@@ -30,6 +30,7 @@ public class EqListController {
     }
     @GetMapping("/geteq")
     public List<EqList> selectAllEq(){
+//        List<EqList> data = eqListService.list();
         List<EqList> data = eqListService.selectAllEq();
         return data;
     }

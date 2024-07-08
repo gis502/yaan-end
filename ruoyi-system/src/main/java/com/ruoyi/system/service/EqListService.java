@@ -1,10 +1,11 @@
 package com.ruoyi.system.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.system.domain.EqList;
 
 import java.util.List;
 
-public interface EqListService {
+public interface EqListService extends IService<EqList> {
     public int addEq(EqList eq);
     public int deleteEq(String eqid);
     public int updataEq(EqList eq);

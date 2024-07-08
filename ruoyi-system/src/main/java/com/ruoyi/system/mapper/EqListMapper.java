@@ -1,11 +1,12 @@
 package com.ruoyi.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.EqList;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 @Mapper
-public interface EqListMapper {
+public interface EqListMapper  extends BaseMapper<EqList> {
     /*
     * 增
     * */

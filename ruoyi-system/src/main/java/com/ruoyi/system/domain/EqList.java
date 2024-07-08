@@ -1,6 +1,17 @@
 package com.ruoyi.system.domain;
 
-public class EqList {
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
+
+@TableName(value = "eqlist")
+public class EqList implements Serializable {
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+    @TableId(value = "eqid")
     private String eqid;
     private String position;
     private String time;
@@ -12,6 +23,7 @@ public class EqList {
     public String getEqid() {
         return eqid;
     }
+
     public void setEqid(String eqid) {
         this.eqid = eqid;
     }

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 @Mapper
-public interface EqListMapper  extends BaseMapper<EqList> {
+public interface EqListMapper extends BaseMapper<EqList> {
     /*
     * 增
     * */

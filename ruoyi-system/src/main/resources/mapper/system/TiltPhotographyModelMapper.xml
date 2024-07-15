@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TiltPhotographyModelMapper">
+
+    <select id="selectAllModel" resultType="com.ruoyi.system.domain.TiltPhotographyModel">
+        select * from tiltphotographymodel
+    </select>
+
+    <insert id="addModel">
+        insert into tiltphotographymodel (name,path,rz,tz,rze,tze,time,modelid)
+        values (#{name},#{path},#{rz},#{tz},#{rze},#{tze},#{time},#{modelid})
+    </insert>
+
+    <delete id="deleteModel">
+        delete from tiltphotographymodel where modelid=#{modelid}
+    </delete>
+
+    <update id="updataModel" parameterType="com.ruoyi.system.domain.TiltPhotographyModel">
+        update tiltphotographymodel
+        set name = #{name}, path = #{path}
+        where modelid = #{modelid}
+    </update>
+
+    <update id="updataModelNoElevation" parameterType="com.ruoyi.system.domain.TiltPhotographyModel">
+        update tiltphotographymodel
+        set tz = #{tz}, rz = #{rz}
+        where modelid = #{modelid}
+    </update>
+
+    <update id="updataModelElevation" parameterType="com.ruoyi.system.domain.TiltPhotographyModel">
+        update tiltphotographymodel
+        set tze = #{tze}, rze = #{rze}
+        where modelid = #{modelid}
+    </update>
+</mapper>

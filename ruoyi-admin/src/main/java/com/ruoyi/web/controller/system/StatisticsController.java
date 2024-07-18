@@ -1,43 +1,62 @@
 package com.ruoyi.web.controller.system;
 
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.system.domain.YaanAftershockStatistics;
+import com.ruoyi.system.domain.YaanCasualties;
 import com.ruoyi.system.domain.bto.RequestBTO;
+import com.ruoyi.system.service.ICasualtiesService;
 import com.ruoyi.system.service.impl.YaanAftershockStatisticsServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/statistics")
+@RequiredArgsConstructor
 public class StatisticsController {
+    private final ICasualtiesService iCasualtiesService;
+    private final YaanAftershockStatisticsServiceImpl yaanAftershockStatisticsServiceImpl;
 
-    @Resource
-    private YaanAftershockStatisticsServiceImpl yaanAftershockStatisticsServiceImpl;
+    @PostMapping("/getData")
+    public AjaxResult getYaanCasualties(@RequestBody RequestBTO requestBTO) {
+        String flag = requestBTO.getFlag();
+
+        switch (flag) {
+            case "YaanCasualties":
+                return AjaxResult.success(iCasualtiesService.getPage(requestBTO));
+            case "YaanAftershockStatistics":
+                return AjaxResult.success(yaanAftershockStatisticsServiceImpl.getPage(requestBTO));
+
+        }
+        return AjaxResult.success(iCasualtiesService.getPage(requestBTO));
+    }
 
     @PostMapping("/exportExcel")
-    public void exportExcel(HttpServletResponse response, @RequestBody RequestBTO requestBTO) throws IOException {
-        String[] fields = requestBTO.getFields();
-        Integer[] ids = requestBTO.getIds();
-        List<YaanAftershockStatistics> list;
-        if (ids == null || ids.length == 0) {
-            list = yaanAftershockStatisticsServiceImpl.list().stream().sorted(Comparator.comparing(YaanAftershockStatistics::getInsertTime).reversed()).collect(Collectors.toList());
-        } else {
-            list = yaanAftershockStatisticsServiceImpl.listByIds(Arrays.asList(ids));
+    public void exportExcel(HttpServletResponse response, @RequestBody RequestBTO RequestBTO) throws IOException {
+        String flag = RequestBTO.getFlag();
+        Class<?> clazz = null;
+        List<?> dataList = null;
+        switch (flag) {
+            case "YaanCasualties":
+                clazz = YaanCasualties.class;
+                dataList = iCasualtiesService.exportExcelGetData(RequestBTO);
+                break;
+            case "YaanAftershockStatistics":
+                clazz = YaanAftershockStatistics.class;
+                dataList = yaanAftershockStatisticsServiceImpl.exportExcelGetData(RequestBTO);
+                break;
         }
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");
@@ -45,30 +64,10 @@ public class StatisticsController {
         String fileName = URLEncoder.encode("地震数据信息统计表", "UTF-8").replaceAll("\\+", "%20");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
 
-        EasyExcel.write(response.getOutputStream(), YaanAftershockStatistics.class).includeColumnFiledNames(Arrays.asList(fields)).sheet("地震数据信息统计表")
-                .doWrite(list);
+        EasyExcel.write(response.getOutputStream(), clazz)
+                .includeColumnFiledNames(Arrays.asList(RequestBTO.getFields()))
+                .sheet("地震数据信息统计表")
+                .doWrite(dataList);
     }
-
-    @PostMapping("/getYaanAftershockStatistics")
-    public IPage<YaanAftershockStatistics> getYaanAftershockStatistics(@RequestBody RequestBTO requestBTO) {
-        Page<YaanAftershockStatistics> yaanAftershockStatisticsPage = new Page<>(requestBTO.getCurrentPage(), requestBTO.getPageSize());
-        LambdaQueryWrapper<YaanAftershockStatistics> lambdaQueryWrapper = new QueryWrapper<YaanAftershockStatistics>()
-                .lambda()
-                .like(YaanAftershockStatistics::getEarthquakeId, requestBTO.getRequestParams())
-                .or()
-                .like(YaanAftershockStatistics::getEarthquake, requestBTO.getRequestParams())
-                .or()
-                .apply("CAST(aftershock_count AS TEXT) = {0}", requestBTO.getRequestParams())
-                .or()
-                .apply("CAST(magnitude_3_0_to_3_9 AS TEXT) = {0}", requestBTO.getRequestParams())
-                .or()
-                .apply("CAST(magnitude_4_0_to_4_9 AS TEXT) = {0}", requestBTO.getRequestParams())
-                .or()
-                .apply("CAST(magnitude_5_0_to_5_9 AS TEXT) = {0}", requestBTO.getRequestParams())
-                .or()
-                .apply("TO_CHAR(insert_time, 'YYYY-MM-DD HH24:MI:SS') LIKE {0}", requestBTO.getRequestParams());
-        return yaanAftershockStatisticsServiceImpl.page(yaanAftershockStatisticsPage, lambdaQueryWrapper);
-    }
-
 
 }

@@ -1,5 +1,8 @@
 package com.ruoyi.system.domain;
 
+import lombok.Data;
+
+@Data
 public class SituationPlot {
     private String eqid;
     private String timestamp;

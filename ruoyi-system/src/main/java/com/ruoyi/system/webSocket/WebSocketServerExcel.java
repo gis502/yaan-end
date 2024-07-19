@@ -1,4 +1,4 @@
-package com.ruoyi.framework.ws;
+package com.ruoyi.system.webSocket;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.ruoyi.system.domain.SituationPlot;
@@ -20,18 +20,18 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 // @ServerEndpoint 声明并创建了webSocket端点, 并且指明了请求路径
 // id 为客户端请求时携带的参数, 用于服务端区分客户端使用
-@ServerEndpoint("/ws/{sid}")
+@ServerEndpoint("/WebSocketServerExcel/{sid}")
 @Component
-public class WebSocketServer {
+public class WebSocketServerExcel {
 
     // 日志对象
-    private static final Logger log = LoggerFactory.getLogger(WebSocketServer.class);
+    private static final Logger log = LoggerFactory.getLogger(WebSocketServerExcel.class);
 
     // 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
 
     // concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
-    private static CopyOnWriteArraySet<WebSocketServer> webSocketSet = new CopyOnWriteArraySet<>();
+    private static CopyOnWriteArraySet<WebSocketServerExcel> webSocketSet = new CopyOnWriteArraySet<>();
     // private static ConcurrentHashMap<String,WebSocketServer> websocketList = new ConcurrentHashMap<>();
 
     // 与某个客户端的连接会话，需要通过它来给客户端发送数据
@@ -43,7 +43,7 @@ public class WebSocketServer {
     @Autowired
     private SituationPlotMapper situationPlotMapper;
 
-    public static WebSocketServer SituationPlotMapperUtil;
+    public static WebSocketServerExcel SituationPlotMapperUtil;
 
     @PostConstruct
     public void init(){
@@ -114,7 +114,7 @@ public class WebSocketServer {
             String eqid = data.getString("eqid");
             String latitude = data.getString("lat");
             String longitude = data.getString("lon");
-            String timestamp = data.getString("lon");
+            String timestamp = "";
             String drawtype = jsonObject.getString("type");
             String drawid = data.getString("id");
             String pointType = data.getString("type");
@@ -183,9 +183,45 @@ public class WebSocketServer {
                     break;
             }
         }
+
+//        if(data==null){
+//
+//        }else{
+//            String operate = jsonObject.getString("operate");
+//            String eqid = "";
+//            String timestamp = "";
+//            String drawtype = jsonObject.getString("type");
+//            String latitude = data.getString("lat");
+//            String longitude = data.getString("lon");
+//            String drawid = data.getString("id");
+//            String pointType = data.getString("type");
+//            String pointdescribe = data.getString("describe");
+//            String pointname = data.getString("name");
+//            String height = data.getString("height");
+//            String img = data.getString("img");
+//
+//            SituationPlot sp = new SituationPlot();
+//            sp.setEqid(eqid);
+//            sp.setTimestamp(timestamp);
+//            sp.setDrawtype(drawtype);
+//            sp.setLatitude(latitude);
+//            sp.setLongitude(longitude);
+//            sp.setDrawid(drawid);
+//            sp.setPointtype(pointType);
+//            sp.setPointdescribe(pointdescribe);
+//            sp.setPointname(pointname);
+//            sp.setHeight(height);
+//            sp.setImg(img);
+//
+//
+//            log.info("cece"+situationPlotMapper);
+//            int res = insertPlot(sp);
+//            log.info("新增"+ res + "列");
+//
+//        }
         log.info("收到来自窗口" + sid + "的信息:" + message);
         // 群发消息
-        for (WebSocketServer item : webSocketSet) {
+        for (WebSocketServerExcel item : webSocketSet) {
             try {
                 item.sendMessage(message);
             } catch (IOException e) {
@@ -218,7 +254,7 @@ public class WebSocketServer {
      * */
     public static void sendInfo(String message, @PathParam("sid") String sid) throws IOException {
         log.info("推送消息到窗口" + sid + "，推送内容:" + message);
-        for (WebSocketServer item : webSocketSet) {
+        for (WebSocketServerExcel item : webSocketSet) {
             try {
                 // 这里可以设定只推送给这个sid的，为null则全部推送
                 if (sid == null) {
@@ -237,14 +273,14 @@ public class WebSocketServer {
     }
 
     public static synchronized void addOnlineCount() {
-        WebSocketServer.onlineCount++;
+        WebSocketServerExcel.onlineCount++;
     }
 
     public static synchronized void subOnlineCount() {
-        WebSocketServer.onlineCount--;
+        WebSocketServerExcel.onlineCount--;
     }
 
-    public static CopyOnWriteArraySet<WebSocketServer> getWebSocketSet() {
+    public static CopyOnWriteArraySet<WebSocketServerExcel> getWebSocketSet() {
         return webSocketSet;
     }
 

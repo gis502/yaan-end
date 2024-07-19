@@ -3,8 +3,8 @@ package com.ruoyi.system.service.impl;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.metadata.CellExtra;
 import com.alibaba.excel.read.listener.ReadListener;
-import com.ruoyi.system.domain.AfterShockStatistics;
-import com.ruoyi.system.mapper.AfterShockStatisticsMapper;
+import com.ruoyi.system.domain.Import.AfterShockStatistics;
+import com.ruoyi.system.mapper.YaanAftershockStatisticsMapper;
 import com.ruoyi.system.webSocket.WebSocketServerExcel;
 
 import java.io.IOException;
@@ -15,14 +15,14 @@ public class AfterShockStatisticsListener implements ReadListener<AfterShockStat
 
 
     private final List<AfterShockStatistics> list = new ArrayList<>();
-    private AfterShockStatisticsMapper afterShockStatisticsMapper;
+    private YaanAftershockStatisticsMapper afterShockStatisticsMapper;
     private int totalRows;
     private int currentRow = 0;
     private String userName;
     private boolean stopReading = false;
 
 
-    public AfterShockStatisticsListener(AfterShockStatisticsMapper afterShockStatisticsMapper, int totalRows, String userName) {
+    public AfterShockStatisticsListener(YaanAftershockStatisticsMapper afterShockStatisticsMapper, int totalRows, String userName) {
         this.afterShockStatisticsMapper = afterShockStatisticsMapper;
         this.totalRows = totalRows;
         this.userName = userName;

@@ -5,16 +5,13 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ruoyi.system.domain.YaanAftershockStatistics;
-import com.ruoyi.system.domain.YaanCasualties;
+import com.ruoyi.system.domain.export.YaanCasualties;
 import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.mapper.CasualtiesMapper;
 import com.ruoyi.system.service.ICasualtiesService;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,8 +1,8 @@
 package com.ruoyi.web.controller.system;
 
 import com.ruoyi.common.core.domain.R;
-import com.ruoyi.system.domain.AfterShockStatistics;
-import com.ruoyi.system.service.impl.AfterShockStatisticsServiceImpl;
+import com.ruoyi.system.domain.YaanAftershockStatisticsDO;
+import com.ruoyi.system.service.impl.YaanAftershockStatisticsServiceImpl;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,13 +16,13 @@ import java.util.List;
 public class AfterShockStatisticsController {
 
     @Resource
-    private AfterShockStatisticsServiceImpl afterShockStatisticsService;
+    private YaanAftershockStatisticsServiceImpl afterShockStatisticsService;
 
 
     @PostMapping("/getAfterShockStatistics/{userName}")
     public R getAfterShockStatistics(@RequestParam("file") MultipartFile file, @PathVariable(value = "userName") String userName) throws IOException {
         try  {
-            List<AfterShockStatistics> list = afterShockStatisticsService.importExcel(file,userName);
+            List<YaanAftershockStatisticsDO> list = afterShockStatisticsService.importExcel(file, userName);
             return R.ok("文件上传成功"+list);
         } catch (Exception e) {
             e.printStackTrace();

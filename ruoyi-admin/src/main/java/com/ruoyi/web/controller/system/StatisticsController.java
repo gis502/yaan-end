@@ -2,13 +2,12 @@ package com.ruoyi.web.controller.system;
 
 import com.alibaba.excel.EasyExcel;
 import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.system.domain.YaanAftershockStatistics;
-import com.ruoyi.system.domain.YaanCasualties;
+import com.ruoyi.system.domain.export.YaanAftershockStatistics;
+import com.ruoyi.system.domain.export.YaanCasualties;
 import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.service.ICasualtiesService;
 import com.ruoyi.system.service.impl.YaanAftershockStatisticsServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RestController

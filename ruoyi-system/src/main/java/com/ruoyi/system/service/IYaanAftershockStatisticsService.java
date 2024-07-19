@@ -2,15 +2,20 @@ package com.ruoyi.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ruoyi.system.domain.YaanAftershockStatistics;
+import com.ruoyi.system.domain.Import.AfterShockStatistics;
+import com.ruoyi.system.domain.YaanAftershockStatisticsDO;
+import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.domain.bto.RequestBTO;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
-public interface IYaanAftershockStatisticsService extends IService<YaanAftershockStatistics> {
+public interface IYaanAftershockStatisticsService extends IService<YaanAftershockStatisticsDO> {
 
-    IPage<YaanAftershockStatistics> getPage(RequestBTO requestBTO);
+    IPage<YaanAftershockStatisticsDO> getPage(RequestBTO requestBTO);
 
-    List<YaanAftershockStatistics> exportExcelGetData(RequestBTO requestBTO);
+    List<YaanAftershockStatisticsDO> exportExcelGetData(RequestBTO requestBTO);
+
+    List<YaanAftershockStatisticsDO> importExcel(MultipartFile file, String userName) throws IOException;
 }

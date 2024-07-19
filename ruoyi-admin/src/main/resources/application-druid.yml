@@ -6,7 +6,7 @@ spring:
         druid:
             # 主库数据源
 #            master:
-#                url: jdbc:postgresql://localhost:5432/yaan?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+#                url: jdbc:postgresql://localhost:5432/ruoyi?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
 #                username: postgres
 #                password: root
             master:
@@ -17,9 +17,9 @@ spring:
             slave:
                 # 从数据源开关/默认关闭
                 enabled: false
-                url: 
-                username: 
-                password: 
+                url:
+                username:
+                password:
             # 初始连接数
             initialSize: 5
             # 最小连接池数量
@@ -43,7 +43,7 @@ spring:
             testWhileIdle: true
             testOnBorrow: false
             testOnReturn: false
-            webStatFilter: 
+            webStatFilter:
                 enabled: true
             statViewServlet:
                 enabled: true

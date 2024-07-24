@@ -3,7 +3,7 @@ package com.ruoyi.system.service.impl;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.metadata.CellExtra;
 import com.alibaba.excel.read.listener.ReadListener;
-import com.ruoyi.system.domain.Import.AfterShockStatistics;
+import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.mapper.YaanAftershockStatisticsMapper;
 import com.ruoyi.system.webSocket.WebSocketServerExcel;
 
@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AfterShockStatisticsListener implements ReadListener<AfterShockStatistics> {
+public class AfterShockStatisticsListener implements ReadListener<YaanAftershockStatistics> {
 
 
-    private final List<AfterShockStatistics> list = new ArrayList<>();
+    private final List<YaanAftershockStatistics> list = new ArrayList<YaanAftershockStatistics>();
     private YaanAftershockStatisticsMapper afterShockStatisticsMapper;
     private int totalRows;
     private int currentRow = 0;
@@ -35,7 +35,8 @@ public class AfterShockStatisticsListener implements ReadListener<AfterShockStat
 
 
     @Override
-    public void invoke(AfterShockStatistics data, AnalysisContext context) {
+    public void invoke(YaanAftershockStatistics data, AnalysisContext context) {
+        System.out.println(data);
         // 检查当前行的第一个单元格
         if (data.getEarthquake().equals("填写单位")) {
             stopReading = true;
@@ -69,7 +70,7 @@ public class AfterShockStatisticsListener implements ReadListener<AfterShockStat
         return true;
     }
 
-    public List<AfterShockStatistics> getList() {
+    public List<YaanAftershockStatistics> getList() {
         return list;
     }
 }

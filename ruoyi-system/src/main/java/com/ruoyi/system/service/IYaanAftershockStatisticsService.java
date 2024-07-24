@@ -11,11 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-public interface IYaanAftershockStatisticsService extends IService<YaanAftershockStatisticsDO> {
+public interface IYaanAftershockStatisticsService extends IService<YaanAftershockStatistics> {
 
-    IPage<YaanAftershockStatisticsDO> getPage(RequestBTO requestBTO);
+    IPage<YaanAftershockStatistics> getPage(RequestBTO requestBTO);
 
-    List<YaanAftershockStatisticsDO> exportExcelGetData(RequestBTO requestBTO);
+    List<YaanAftershockStatistics> exportExcelGetData(RequestBTO requestBTO);
 
-    List<YaanAftershockStatisticsDO> importExcel(MultipartFile file, String userName) throws IOException;
+    List<YaanAftershockStatistics> importExcel(MultipartFile file, String userName) throws IOException;
 }

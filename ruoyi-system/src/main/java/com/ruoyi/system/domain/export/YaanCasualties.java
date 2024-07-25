@@ -29,7 +29,7 @@ public class YaanCasualties {
     /**
      * earthquake_id
      */
-    @ExcelProperty({"地震标识"})
+    @ExcelProperty({"震情灾情","地震标识"})
     @TableField(value = "earthquake_id")
     private String earthquakeId;
 
@@ -37,7 +37,7 @@ public class YaanCasualties {
      * seismic_zone_id
      */
     @TableField(value = "seismic_zone_id")
-    @ExcelProperty({"震区标识"})
+    @ExcelProperty({"震情灾情","震区标识"})
     private String seismicZoneId;
 
     /**
@@ -53,41 +53,41 @@ public class YaanCasualties {
      * new_deaths
      */
     @TableField(value = "new_deaths")
-    @ExcelProperty(value = {"新增遇难（人）"})
+    @ExcelProperty(value = {"震情灾情","新增遇难（人）"})
     private Integer newDeaths;
 
     /**
      * new_missing
      */
     @TableField(value = "new_missing")
-    @ExcelProperty(value = {"新增失踪（人）"})
+    @ExcelProperty(value = {"震情灾情","新增失踪（人）"})
     private Integer newMissing;
 
     /**
      * new_injuries
      */
     @TableField(value = "new_injuries")
-    @ExcelProperty(value = {"新增受伤（人）"})
+    @ExcelProperty(value = {"震情灾情","新增受伤（人）"})
     private Integer newInjuries;
 
     /**
      * total_deaths
      */
     @TableField(value = "total_deaths")
-    @ExcelProperty(value = {"累计遇难（人）"})
+    @ExcelProperty(value = {"震情灾情","累计遇难（人）"})
     private Integer totalDeaths;
 
     /**
      * total_missing
      */
     @TableField(value = "total_missing")
-    @ExcelProperty(value = {"累计失踪（人）"})
+    @ExcelProperty(value = {"震情灾情","累计失踪（人）"})
     private Integer totalMissing;
 
     /**
      * total_injuries
      */
     @TableField(value = "total_injuries")
-    @ExcelProperty(value = {"累计受伤（人）"})
+    @ExcelProperty(value = {"震情灾情","累计受伤（人）"})
     private Integer totalInjuries;
 }

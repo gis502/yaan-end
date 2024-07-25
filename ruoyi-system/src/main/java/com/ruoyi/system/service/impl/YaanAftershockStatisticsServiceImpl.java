@@ -49,7 +49,7 @@ public class YaanAftershockStatisticsServiceImpl extends ServiceImpl<YaanAftersh
                 .or()
                 .apply("CAST(magnitude_5_0_to_5_9 AS TEXT) = {0}", requestBTO.getRequestParams())
                 .or()
-                .like(YaanAftershockStatistics::getInsertTime, requestBTO.getRequestParams());
+                .apply("CAST(insert_time AS TEXT) LIKE {0}", "%" + requestBTO.getRequestParams() + "%");
         return this.page(yaanAftershockStatisticsPage, lambdaQueryWrapper);
     }
 

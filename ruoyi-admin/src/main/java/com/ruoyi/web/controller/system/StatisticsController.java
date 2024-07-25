@@ -2,6 +2,7 @@ package com.ruoyi.web.controller.system;
 
 import com.alibaba.excel.EasyExcel;
 import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.domain.export.YaanCasualties;
 import com.ruoyi.system.domain.bto.RequestBTO;
@@ -29,15 +30,16 @@ public class StatisticsController {
     @PostMapping("/getData")
     public AjaxResult getYaanCasualties(@RequestBody RequestBTO requestBTO) {
         String flag = requestBTO.getFlag();
-
         switch (flag) {
-            case "YaanCasualties":
-                return AjaxResult.success(iCasualtiesService.getPage(requestBTO));
-            case "YaanAftershockStatistics":
+            case "1":
                 return AjaxResult.success(yaanAftershockStatisticsServiceImpl.getPage(requestBTO));
+            case "2":
+                return AjaxResult.success(iCasualtiesService.getPage(requestBTO));
+            default:
+                throw new ServiceException("系统执行异常请练习管理员");
 
         }
-        return AjaxResult.success(iCasualtiesService.getPage(requestBTO));
+
     }
 
     @PostMapping("/exportExcel")
@@ -46,14 +48,17 @@ public class StatisticsController {
         Class<?> clazz = null;
         List<?> dataList = null;
         switch (flag) {
-            case "YaanCasualties":
-                clazz = YaanCasualties.class;
-                dataList = iCasualtiesService.exportExcelGetData(RequestBTO);
-                break;
-            case "YaanAftershockStatistics":
+            case "1":
                 clazz = YaanAftershockStatistics.class;
                 dataList = yaanAftershockStatisticsServiceImpl.exportExcelGetData(RequestBTO);
                 break;
+            case "2":
+                clazz = YaanCasualties.class;
+                dataList = iCasualtiesService.exportExcelGetData(RequestBTO);
+                break;
+            default:
+                throw new ServiceException("系统执行异常请练习管理员");
+
         }
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");

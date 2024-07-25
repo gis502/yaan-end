@@ -1,8 +1,15 @@
 package com.ruoyi.web.controller.system;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson2.JSON;
+import com.ruoyi.system.domain.YaanFiles;
+import com.ruoyi.system.service.*;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,14 +34,10 @@ import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.system.service.ISysDeptService;
-import com.ruoyi.system.service.ISysPostService;
-import com.ruoyi.system.service.ISysRoleService;
-import com.ruoyi.system.service.ISysUserService;
 
 /**
  * 用户信息
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -52,6 +55,9 @@ public class SysUserController extends BaseController
 
     @Autowired
     private ISysPostService postService;
+
+    @Autowired
+    private IYaanFilesService yaanFilesService;
 
     /**
      * 获取用户列表
@@ -104,11 +110,24 @@ public class SysUserController extends BaseController
         userService.checkUserDataScope(userId);
         AjaxResult ajax = AjaxResult.success();
         List<SysRole> roles = roleService.selectRoleAll();
+        List<YaanFiles> yaanFiles = yaanFilesService.selectFilesAll();
         ajax.put("roles", SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
         ajax.put("posts", postService.selectPostAll());
+        ajax.put("fileIds",yaanFiles);
         if (StringUtils.isNotNull(userId))
         {
             SysUser sysUser = userService.selectUserById(userId);
+            // 处理 fileIds，确保 fileIds 是一个有效的集合
+            List<Integer> fileIds = Optional.ofNullable(sysUser.getFileIds())
+                    // 确保字符串非空
+                    .filter(fileIdsJson -> !fileIdsJson.trim().isEmpty())
+                    .map(fileIdsJson -> JSON.parseArray(fileIdsJson, Integer.class))
+                    // 如果 fileIdsJson 为 null 或空，返回空列表
+                    .orElseGet(ArrayList::new);
+            ajax.put("userFileIds", yaanFiles.stream()
+                    .filter(file -> fileIds.contains(file.getFileId()))
+                    .collect(Collectors.toList()));
+
             ajax.put(AjaxResult.DATA_TAG, sysUser);
             ajax.put("postIds", postService.selectPostListByUserId(userId));
             ajax.put("roleIds", sysUser.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.toList()));
@@ -122,8 +141,9 @@ public class SysUserController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:user:add')")
     @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysUser user)
+    public AjaxResult add(@Validated @RequestBody String requestBody)
     {
+        SysUser user = JSON.parseObject(requestBody, SysUser.class);
         if (!userService.checkUserNameUnique(user))
         {
             return error("新增用户'" + user.getUserName() + "'失败，登录账号已存在");
@@ -147,10 +167,12 @@ public class SysUserController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysUser user)
+    public AjaxResult edit(@Validated @RequestBody String requestBody)
     {
+        SysUser user = JSON.parseObject(requestBody, SysUser.class);
         userService.checkUserAllowed(user);
         userService.checkUserDataScope(user.getUserId());
+        logger.info("修改用户" + user.getFileIds());
         if (!userService.checkUserNameUnique(user))
         {
             return error("修改用户'" + user.getUserName() + "'失败，登录账号已存在");

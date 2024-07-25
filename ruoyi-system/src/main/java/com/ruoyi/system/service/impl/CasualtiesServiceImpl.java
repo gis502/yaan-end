@@ -37,7 +37,7 @@ public class CasualtiesServiceImpl extends ServiceImpl<CasualtiesMapper, YaanCas
                     .or()
                     .like(YaanCasualties::getSeismicZoneId, requestParams)
                     .or()
-                    .like(YaanCasualties::getInsertTime, requestParams)
+                    .apply("CAST(insert_time AS TEXT) LIKE {0}", "%" + requestParams + "%")
                     .or()
                     .like(YaanCasualties::getNewDeaths, requestParams)
                     .or()

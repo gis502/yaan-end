@@ -80,6 +80,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         set starttime = #{starttime}, endtime = #{endtime}, info = #{info}
         where id = #{id}
     </update>
+
+
+    <select id="getPlotwithStartandEndtime" resultType="com.ruoyi.system.domain.vo.PlotwithStartandEndTime">
+        SELECT
+            p.plotid,
+            p.plottype,
+            p.drawtype,
+            p.latitude,
+            p.longitude,
+            p.height,
+            p.img,
+            t.starttime,
+            t.endtime
+        FROM
+            yaan_situationplot p
+                LEFT JOIN
+            (
+                SELECT
+                    plotid,
+                    MIN(starttime) AS starttime,
+                    MAX(endtime) AS endtime
+                FROM
+                    yaan_situationplotinfo
+                GROUP BY
+                    plotid
+            ) t ON p.plotid = t.plotid
+        WHERE
+            p.eqid = #{id}
+        ORDER BY
+            t.starttime ASC;
+    </select>
+
+
 </mapper>
 
 

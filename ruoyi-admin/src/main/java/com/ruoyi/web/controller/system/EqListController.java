@@ -1,5 +1,6 @@
 package com.ruoyi.web.controller.system;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ruoyi.system.domain.EqList;
 import com.ruoyi.system.domain.PlotIconManagement;
 import com.ruoyi.system.service.EqListService;
@@ -34,4 +35,13 @@ public class EqListController {
         List<EqList> data = eqListService.selectAllEq();
         return data;
     }
+
+    @PostMapping("/geteqbyid")
+    public EqList selectEqByID(@RequestParam String eqid){
+        QueryWrapper<EqList> eqListQueryWrapper = new QueryWrapper<>();
+        eqListQueryWrapper.eq("eqid",eqid);
+        EqList one = eqListService.getOne(eqListQueryWrapper);
+        return one;
+    }
+
 }

@@ -4,11 +4,11 @@ import com.ruoyi.system.domain.PlotIconManagement;
 import com.ruoyi.system.domain.SituationPlot;
 import com.ruoyi.system.domain.YaanSituationPlot;
 import com.ruoyi.system.domain.YaanSituationPlotInfo;
+import com.ruoyi.system.domain.vo.PlotwithStartandEndTime;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface SituationPlotMapper {
@@ -45,5 +45,6 @@ public interface SituationPlotMapper {
 
     int deletePlotInfoById(@Param("id") String id);
     int updataPlotInfo(YaanSituationPlotInfo param);
+    List<PlotwithStartandEndTime> getPlotwithStartandEndtime (@Param("id") String id);
 
 }

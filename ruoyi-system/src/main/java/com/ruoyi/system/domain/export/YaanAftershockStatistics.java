@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -66,9 +67,9 @@ public class YaanAftershockStatistics {
 
     @ExcelProperty(value = {"震情灾情", "地震时间"})
     @TableField(value = "earthquake_time")
-    @DateTimeFormat("yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date earthquakeTime;
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Timestamp earthquakeTime;
 
 
 }

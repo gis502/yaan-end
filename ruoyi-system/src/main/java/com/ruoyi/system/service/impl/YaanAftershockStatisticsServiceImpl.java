@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ruoyi.system.domain.EqList;
 import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.mapper.EqListMapper;
@@ -20,7 +21,6 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -83,14 +83,11 @@ public class YaanAftershockStatisticsServiceImpl extends ServiceImpl<YaanAftersh
         // 将解析后的数据保存到数据库
         // 遍历解析后的数据，根据地震时间与地震名称查找eqList表中的earthquakeId
         for (YaanAftershockStatistics data : list) {
-            Date earthquakeTime1 = data.getEarthquakeTime();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String earthquakeTime = simpleDateFormat.format(earthquakeTime1);
             // 根据地震时间与地震名称查询 earthquakeId
-            String earthquakeId = eqListMapper.findEarthquakeIdByTimeAndPosition(earthquakeTime, data.getEarthquake());
-
+            List<EqList> earthquakeIdByTimeAndPosition = eqListMapper.findEarthquakeIdByTimeAndPosition(data.getEarthquake());
             // 设置 earthquakeId
-            data.setEarthquakeId(earthquakeId);
+            data.setEarthquakeId(earthquakeIdByTimeAndPosition.get(0).getEqid());
+            data.setEarthquakeTime(earthquakeIdByTimeAndPosition.get(0).getTime());
             data.setInsertTime(LocalDateTime.now());
         }
         //集合拷贝

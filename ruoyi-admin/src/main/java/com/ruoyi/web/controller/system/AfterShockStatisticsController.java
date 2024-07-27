@@ -23,7 +23,7 @@ public class AfterShockStatisticsController {
     public R getAfterShockStatistics(@RequestParam("file") MultipartFile file, @PathVariable(value = "userName") String userName) throws IOException {
         try  {
             List<YaanAftershockStatistics> list = afterShockStatisticsService.importExcel(file, userName);
-            return R.ok("文件上传成功"+list);
+            return R.ok(list);
         } catch (Exception e) {
             e.printStackTrace();
             return R.fail("文件上传失败: " + e.getMessage());

@@ -29,7 +29,7 @@ public interface EqListMapper extends BaseMapper<EqList> {
     List<EqList> selectAllEq();
 
     //导入表实用
-    @Select("SELECT eqid FROM eqlist WHERE time LIKE CONCAT('%', #{earthquakeTime}, '%') AND position LIKE CONCAT('%', #{position}, '%')")
-    String findEarthquakeIdByTimeAndPosition(@Param("earthquakeTime") String earthquakeTime, @Param("position") String position);
+    @Select("SELECT eqid,time FROM eqlist WHERE position LIKE CONCAT('%', #{position}, '%')")
+    List<EqList> findEarthquakeIdByTimeAndPosition(@Param("position") String position);
 
 }

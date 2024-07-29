@@ -51,20 +51,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <insert id="insertPlotInfo">
-        insert into yaan_situationplotinfo (plotid,starttime,endtime,info,id)
-        values (#{plotid}, #{starttime}, #{endtime}, #{info},#{id})
+        insert into yaan_situationplotinfo (plotid, starttime, endtime, info, id)
+        values (#{plotid}, #{starttime}, #{endtime}, #{info}, #{id})
     </insert>
 
     <select id="getPlot" resultType="com.ruoyi.system.domain.YaanSituationPlot">
-        select * from yaan_situationplot
+        select * from yaan_situationplot where eqid=#{eqid}
     </select>
 
     <select id="getPlotInfos" resultType="com.ruoyi.system.domain.YaanSituationPlotInfo">
-        select * from yaan_situationplotinfo where plotid = #{plotid}
+        select * from yaan_situationplotinfo where plotid = #{plotid} ORDER BY starttime ASC
     </select>
 
     <delete id="deletePlot">
-            delete from yaan_situationplot where plotid=#{plotid}
+        delete from yaan_situationplot where plotid=#{plotid}
     </delete>
 
     <delete id="deletePlotInfo">

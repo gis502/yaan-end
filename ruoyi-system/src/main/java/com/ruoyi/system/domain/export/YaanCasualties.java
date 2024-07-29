@@ -43,8 +43,8 @@ public class YaanCasualties {
 
     @TableField(value = "earthquake")
     @ExcelProperty({"人员伤亡", "地震名称"})
-
     private String earthquake;
+
     @TableField(value = "affected_population")
     @ExcelProperty({"人员伤亡", "受灾人数累积"})
     private String affectedPopulation;
@@ -54,7 +54,7 @@ public class YaanCasualties {
     private String countyTown;
 
     /**
-     * insert_time
+     * filling_time
      */
     @ExcelProperty(value = {"人员伤亡", "填报截至时间"})
     @DateTimeFormat("yyyy-MM-dd")

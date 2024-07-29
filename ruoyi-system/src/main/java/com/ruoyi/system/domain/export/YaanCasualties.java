@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -47,19 +48,19 @@ public class YaanCasualties {
     private String earthquake;
     @TableField(value = "affected_population")
     @ExcelProperty({"人员伤亡", "受灾人数累积"})
-    private String affectedPopulation;
+    private Integer affectedPopulation;
 
     @TableField(value = "county_town")
     @ExcelProperty({"人员伤亡", "受灾县区数量"})
-    private String countyTown;
+    private Integer countyTown;
 
     /**
      * insert_time
      */
-    @ExcelProperty(value = {"人员伤亡", "填报截至时间"})
-    @DateTimeFormat("yyyy-MM-dd")
+    @ExcelProperty(value = {"人员伤亡", "统计截止时间"})
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
     @TableField(value = "filling_time")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date fillingTime;
 
     @ExcelIgnore
@@ -69,9 +70,9 @@ public class YaanCasualties {
 
     @ExcelProperty(value = {"人员伤亡", "地震时间"})
     @TableField(value = "earthquake_time")
-    @DateTimeFormat("yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date earthquakeTime;
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Timestamp earthquakeTime;
     /**
      * new_deaths
      */
@@ -83,7 +84,7 @@ public class YaanCasualties {
      * new_missing
      */
     @TableField(value = "new_missing")
-    @ExcelProperty(value = {"人员伤亡", "新增失踪（人）"})
+    @ExcelProperty(value = {"人员伤亡", "新增失联（人）"})
     private Integer newMissing;
 
     /**
@@ -104,7 +105,7 @@ public class YaanCasualties {
      * total_missing
      */
     @TableField(value = "total_missing")
-    @ExcelProperty(value = {"人员伤亡", "累计失踪（人）"})
+    @ExcelProperty(value = {"人员伤亡", "累计失联（人）"})
     private Integer totalMissing;
 
     /**

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AfterShockStatisticsListener implements ReadListener<YaanAftershockStatistics> {
+public class YaanAfterShockStatisticsListener implements ReadListener<YaanAftershockStatistics> {
 
 
     private final List<YaanAftershockStatistics> list = new ArrayList<YaanAftershockStatistics>();
@@ -22,7 +22,7 @@ public class AfterShockStatisticsListener implements ReadListener<YaanAftershock
     private boolean stopReading = false;
 
 
-    public AfterShockStatisticsListener(YaanAftershockStatisticsMapper afterShockStatisticsMapper, int totalRows, String userName) {
+    public YaanAfterShockStatisticsListener(YaanAftershockStatisticsMapper afterShockStatisticsMapper, int totalRows, String userName) {
         this.afterShockStatisticsMapper = afterShockStatisticsMapper;
         this.totalRows = totalRows;
         this.userName = userName;

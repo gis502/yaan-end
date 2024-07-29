@@ -34,6 +34,16 @@ public class YaanAftershockStatistics {
     @TableField(value = "earthquake")
     private String earthquake;
 
+    @ExcelProperty(value = {"震情灾情", "震区"})
+    @TableField(value = "earthquake_area")
+    private String earthquakeArea;
+
+    @ExcelProperty(value = {"震情灾情", "统计截止时间"})
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "filling_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date fillingTime;
+
     @ExcelProperty({"震情灾情", "余震次数累计"})
     @TableField(value = "aftershock_count")
     private Integer aftershockCount;
@@ -49,20 +59,13 @@ public class YaanAftershockStatistics {
     @ExcelProperty({"震情灾情", "5.0-5.9级"})
     @TableField(value = "magnitude_5_0_to_5_9")
     private Integer magnitude50To59;
-    @ExcelProperty(value = {"震情灾情", "震区"})
-    @TableField(value = "earthquake_area")
-    private String earthquakeArea;
 
     @ExcelIgnore
     @TableField(value = "insert_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime insertTime;
 
-    @ExcelProperty(value = {"震情灾情", "统计截止时间"})
-    @DateTimeFormat("yyyy-MM-dd")
-    @TableField(value = "filling_time")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date fillingTime;
+
 
 
     @ExcelProperty(value = {"震情灾情", "地震时间"})

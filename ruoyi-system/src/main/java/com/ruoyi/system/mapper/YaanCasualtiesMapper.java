@@ -5,5 +5,5 @@ import com.ruoyi.system.domain.export.YaanCasualties;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface CasualtiesMapper extends BaseMapper<YaanCasualties> {
+public interface YaanCasualtiesMapper extends BaseMapper<YaanCasualties> {
 }

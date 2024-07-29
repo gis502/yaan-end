@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,7 +74,7 @@ public class YaanAftershockStatisticsServiceImpl extends ServiceImpl<YaanAftersh
         inputStream.close();
         // 重新获取 InputStream
         inputStream = file.getInputStream();
-        AfterShockStatisticsListener listener = new AfterShockStatisticsListener(baseMapper, totalRows, userName);
+        YaanAfterShockStatisticsListener listener = new YaanAfterShockStatisticsListener(baseMapper, totalRows, userName);
         // 读取Excel文件，从第4行开始
         EasyExcel.read(inputStream, YaanAftershockStatistics.class, listener).headRowNumber(2).sheet().doRead();
         // 获取解析后的数据

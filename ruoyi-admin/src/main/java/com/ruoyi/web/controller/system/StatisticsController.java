@@ -6,7 +6,7 @@ import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.domain.export.YaanCasualties;
 import com.ruoyi.system.domain.bto.RequestBTO;
-import com.ruoyi.system.service.ICasualtiesService;
+import com.ruoyi.system.service.IYaanCasualtiesService;
 import com.ruoyi.system.service.impl.YaanAftershockStatisticsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/statistics")
 @RequiredArgsConstructor
 public class StatisticsController {
-    private final ICasualtiesService iCasualtiesService;
+    private final IYaanCasualtiesService iCasualtiesService;
     private final YaanAftershockStatisticsServiceImpl yaanAftershockStatisticsServiceImpl;
 
     @PostMapping("/getData")

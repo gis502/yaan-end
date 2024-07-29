@@ -1,31 +1,20 @@
 package com.ruoyi.web.controller.system;
 
 import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.enums.BaseFieldDisplayEnum;
-import com.ruoyi.common.enums.FieldDisplayEnum.YaanAftershockStatisticsEnum;
-import com.ruoyi.common.enums.FieldDisplayEnum.YaanCasualtiesEnum;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
+import com.ruoyi.system.service.IYaanFilesService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/Field")
+@RequiredArgsConstructor
 public class GetFieldController {
+    private final IYaanFilesService yaanFilesService;
+
     @GetMapping()
-    public AjaxResult getField(@RequestParam() String enumType) {
-        Class<? extends BaseFieldDisplayEnum> enumClass;
-        switch (enumType) {
-            case "YaanAftershockStatistics":
-                enumClass = YaanAftershockStatisticsEnum.class;
-                break;
-            case "YaanCasualties":
-                enumClass = YaanCasualtiesEnum.class;
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown enum type: " + enumType);
-        }
-        // 通过反射调用 BaseFieldDisplayEnum.toMap 方法
-        Map<String, String> enumMap = BaseFieldDisplayEnum.toMap(enumClass);
-        return AjaxResult.success(enumMap);
+    public AjaxResult getField() {
+      return AjaxResult.success(yaanFilesService.selectFilesByUserId());
     }
 }

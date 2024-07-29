@@ -9,6 +9,7 @@
         select * from eqlist
     </select>
 
+
     <insert id="addEq">
         insert into eqlist (eqid,position,time,magnitude,longitude,latitude,depth)
         values (#{eqid}, #{position}, #{time}, #{magnitude}, #{longitude}, #{latitude},#{depth})

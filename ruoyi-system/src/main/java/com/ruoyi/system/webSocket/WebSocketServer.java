@@ -102,87 +102,87 @@ public class WebSocketServer {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        JSONObject jsonObject = JSONObject.parseObject(message);
-        JSONObject data = jsonObject.getJSONObject("data");
-        String operate = jsonObject.getString("operate");
-        if(Objects.equals(operate, "delete")){
-            String id = jsonObject.getString("id");
-            int resDelete = deletePlot(id);
-            log.info("成功删除"+resDelete+"条");
-        }else if(Objects.equals(operate, "add")){
-            String drawType = jsonObject.getString("type");
-            String eqid = data.getString("eqid");
-            String latitude = data.getString("lat");
-            String longitude = data.getString("lon");
-            String timestamp = "";
-            String drawtype = jsonObject.getString("type");
-            String drawid = data.getString("id");
-            String pointType = data.getString("type");
-            String pointdescribe = data.getString("describe");
-            String pointname = data.getString("name");
-            String img = data.getString("img");
-            String height = data.getString("height");
-            List<SituationPlot> spm= new ArrayList<SituationPlot>();
-            JSONArray positions = data.getJSONArray("positions");
-            switch (drawType){
-                case "point":
-                    SituationPlot sp = new SituationPlot();
-                    sp.setEqid(eqid);
-                    sp.setTimestamp(timestamp);
-                    sp.setDrawtype(drawtype);
-                    sp.setLatitude(latitude);
-                    sp.setLongitude(longitude);
-                    sp.setDrawid(drawid);
-                    sp.setPointtype(pointType);
-                    sp.setPointdescribe(pointdescribe);
-                    sp.setPointname(pointname);
-                    sp.setHeight(height);
-                    sp.setImg(img);
-                    int res = insertPlot(sp);
-                    log.info("新增"+ res + "t");
-                    break;
-                case "polyline":
-                    for(int i=0;i<positions.size();i++){
-                        SituationPlot spPolyline = new SituationPlot();
-                        spPolyline.setEqid(eqid);
-                        spPolyline.setTimestamp(timestamp);
-                        spPolyline.setDrawtype(drawtype);
-                        spPolyline.setDrawid(drawid);
-                        spPolyline.setPointtype(pointType);
-                        spPolyline.setPointdescribe(pointdescribe);
-                        spPolyline.setPointname(pointname);
-                        spPolyline.setImg(img);
-                        spPolyline.setLatitude(positions.getJSONObject(i).getString("y"));
-                        spPolyline.setLongitude(positions.getJSONObject(i).getString("x"));
-                        spPolyline.setHeight(positions.getJSONObject(i).getString("z"));
-                        spm.add(spPolyline);
-                    }
-                    int resPolyline = insertPlotMore(spm);
-                    log.info("asdf"+spm);
-                    log.info("插入成功："+resPolyline+"条线");
-                    break;
-                case "polygon":
-                    for(int i=0;i<positions.size();i++){
-                        SituationPlot spPolygon = new SituationPlot();
-                        spPolygon.setEqid(eqid);
-                        spPolygon.setTimestamp(timestamp);
-                        spPolygon.setDrawtype(drawtype);
-                        spPolygon.setDrawid(drawid);
-                        spPolygon.setPointtype(pointType);
-                        spPolygon.setPointdescribe(pointdescribe);
-                        spPolygon.setPointname(pointname);
-                        spPolygon.setImg(img);
-                        spPolygon.setLatitude(positions.getJSONObject(i).getString("y"));
-                        spPolygon.setLongitude(positions.getJSONObject(i).getString("x"));
-                        spPolygon.setHeight(positions.getJSONObject(i).getString("z"));
-                        spm.add(spPolygon);
-                    }
-                    int resPolygon = insertPlotMore(spm);
-                    log.info("asdf"+spm);
-                    log.info("插入成功："+resPolygon+"个面");
-                    break;
-            }
-        }
+//        JSONObject jsonObject = JSONObject.parseObject(message);
+//        JSONObject data = jsonObject.getJSONObject("data");
+//        String operate = jsonObject.getString("operate");
+//        if(Objects.equals(operate, "delete")){
+//            String id = jsonObject.getString("id");
+//            int resDelete = deletePlot(id);
+//            log.info("成功删除"+resDelete+"条");
+//        }else if(Objects.equals(operate, "add")){
+//            String drawType = jsonObject.getString("type");
+//            String eqid = data.getString("eqid");
+//            String latitude = data.getString("lat");
+//            String longitude = data.getString("lon");
+//            String timestamp = "";
+//            String drawtype = jsonObject.getString("type");
+//            String drawid = data.getString("id");
+//            String pointType = data.getString("type");
+//            String pointdescribe = data.getString("describe");
+//            String pointname = data.getString("name");
+//            String img = data.getString("img");
+//            String height = data.getString("height");
+//            List<SituationPlot> spm= new ArrayList<SituationPlot>();
+//            JSONArray positions = data.getJSONArray("positions");
+//            switch (drawType){
+//                case "point":
+//                    SituationPlot sp = new SituationPlot();
+//                    sp.setEqid(eqid);
+//                    sp.setTimestamp(timestamp);
+//                    sp.setDrawtype(drawtype);
+//                    sp.setLatitude(latitude);
+//                    sp.setLongitude(longitude);
+//                    sp.setDrawid(drawid);
+//                    sp.setPointtype(pointType);
+//                    sp.setPointdescribe(pointdescribe);
+//                    sp.setPointname(pointname);
+//                    sp.setHeight(height);
+//                    sp.setImg(img);
+//                    int res = insertPlot(sp);
+//                    log.info("新增"+ res + "t");
+//                    break;
+//                case "polyline":
+//                    for(int i=0;i<positions.size();i++){
+//                        SituationPlot spPolyline = new SituationPlot();
+//                        spPolyline.setEqid(eqid);
+//                        spPolyline.setTimestamp(timestamp);
+//                        spPolyline.setDrawtype(drawtype);
+//                        spPolyline.setDrawid(drawid);
+//                        spPolyline.setPointtype(pointType);
+//                        spPolyline.setPointdescribe(pointdescribe);
+//                        spPolyline.setPointname(pointname);
+//                        spPolyline.setImg(img);
+//                        spPolyline.setLatitude(positions.getJSONObject(i).getString("y"));
+//                        spPolyline.setLongitude(positions.getJSONObject(i).getString("x"));
+//                        spPolyline.setHeight(positions.getJSONObject(i).getString("z"));
+//                        spm.add(spPolyline);
+//                    }
+//                    int resPolyline = insertPlotMore(spm);
+//                    log.info("asdf"+spm);
+//                    log.info("插入成功："+resPolyline+"条线");
+//                    break;
+//                case "polygon":
+//                    for(int i=0;i<positions.size();i++){
+//                        SituationPlot spPolygon = new SituationPlot();
+//                        spPolygon.setEqid(eqid);
+//                        spPolygon.setTimestamp(timestamp);
+//                        spPolygon.setDrawtype(drawtype);
+//                        spPolygon.setDrawid(drawid);
+//                        spPolygon.setPointtype(pointType);
+//                        spPolygon.setPointdescribe(pointdescribe);
+//                        spPolygon.setPointname(pointname);
+//                        spPolygon.setImg(img);
+//                        spPolygon.setLatitude(positions.getJSONObject(i).getString("y"));
+//                        spPolygon.setLongitude(positions.getJSONObject(i).getString("x"));
+//                        spPolygon.setHeight(positions.getJSONObject(i).getString("z"));
+//                        spm.add(spPolygon);
+//                    }
+//                    int resPolygon = insertPlotMore(spm);
+//                    log.info("asdf"+spm);
+//                    log.info("插入成功："+resPolygon+"个面");
+//                    break;
+//            }
+//        }
 
 //        if(data==null){
 //

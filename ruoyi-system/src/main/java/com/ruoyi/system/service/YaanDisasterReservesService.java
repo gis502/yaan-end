@@ -1,7 +1,9 @@
-package com.ruoyi.system.service.impl;
+package com.ruoyi.system.service;
 
 import com.ruoyi.system.domain.export.YaanDisasterReserves;
-public interface YaanDisasterReservesService{
+import org.springframework.stereotype.Service;
+
+public interface YaanDisasterReservesService {
 
     int deleteByPrimaryKey(Integer id);
 
@@ -16,3 +18,7 @@ public interface YaanDisasterReservesService{
     int updateByPrimaryKey(YaanDisasterReserves record);
 
 }
+
+
+
+

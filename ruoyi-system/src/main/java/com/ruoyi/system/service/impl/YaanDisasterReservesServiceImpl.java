@@ -1,14 +1,14 @@
-package com.ruoyi.system.service;
-
-import org.springframework.stereotype.Service;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package com.ruoyi.system.service.impl;
 
 import com.ruoyi.system.domain.export.YaanDisasterReserves;
 import com.ruoyi.system.mapper.YaanDisasterReservesMapper;
-import com.ruoyi.system.service.impl.YaanDisasterReservesService;
+import com.ruoyi.system.service.YaanDisasterReservesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 @Service
-public class YaanDisasterReservesServiceImpl implements YaanDisasterReservesService{
+public class YaanDisasterReservesServiceImpl implements YaanDisasterReservesService {
 
     @Autowired
     private YaanDisasterReservesMapper yaanDisasterReservesMapper;

@@ -86,7 +86,7 @@ public class YaanAftershockStatisticsServiceImpl extends ServiceImpl<YaanAftersh
             List<EqList> earthquakeIdByTimeAndPosition = eqListMapper.findEarthquakeIdByTimeAndPosition(data.getEarthquake());
             // 设置 earthquakeId
             data.setEarthquakeId(earthquakeIdByTimeAndPosition.get(0).getEqid());
-            data.setEarthquakeTime(earthquakeIdByTimeAndPosition.get(0).getTime());
+             data.setEarthquakeTime(earthquakeIdByTimeAndPosition.get(0).getTime());
             data.setInsertTime(LocalDateTime.now());
         }
         //集合拷贝

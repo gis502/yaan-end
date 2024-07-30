@@ -72,7 +72,7 @@ public class YaanCasualties {
     @TableField(value = "earthquake_time")
     @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Timestamp earthquakeTime;
+    private LocalDateTime earthquakeTime;
     /**
      * new_deaths
      */

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.YaanDisasterReservesMapper">
-  <resultMap id="BaseResultMap" type="com.ruoyi.system.domain.export.YaanDisasterReserves">
+  <resultMap id="BaseResultMap" type="com.ruoyi.system.domain.YaanDisasterReserves">
     <!--@mbg.generated-->
     <!--@Table yaan_disaster_reserves-->
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -35,16 +35,16 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, county, storage_points_count, total_kits_count, disaster_tents_count, cotton_blankets_count, 
-    other_blankets_count, cotton_clothes_count, cotton_coats_count, other_clothes_count, 
-    wool_blankets_count, folding_beds_count, bunk_beds_count, striped_cloth_bundles_count, 
-    moisture_mats_count, generators_count, lighting_fixtures_count, lighting_kits_count, 
-    flashlights_count, raincoats_count, rain_boots_count, other_supplies_count, address, 
+    id, county, storage_points_count, total_kits_count, disaster_tents_count, cotton_blankets_count,
+    other_blankets_count, cotton_clothes_count, cotton_coats_count, other_clothes_count,
+    wool_blankets_count, folding_beds_count, bunk_beds_count, striped_cloth_bundles_count,
+    moisture_mats_count, generators_count, lighting_fixtures_count, lighting_kits_count,
+    flashlights_count, raincoats_count, rain_boots_count, other_supplies_count, address,
     longitude, latitude, contact_person, contact_phone, insert_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from yaan_disaster_reserves
     where id = #{id,jdbcType=INTEGER}
@@ -54,30 +54,30 @@
     delete from yaan_disaster_reserves
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ruoyi.system.domain.export.YaanDisasterReserves">
+  <insert id="insert" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
     <!--@mbg.generated-->
-    insert into yaan_disaster_reserves (id, county, storage_points_count, 
-      total_kits_count, disaster_tents_count, cotton_blankets_count, 
-      other_blankets_count, cotton_clothes_count, 
-      cotton_coats_count, other_clothes_count, wool_blankets_count, 
-      folding_beds_count, bunk_beds_count, striped_cloth_bundles_count, 
-      moisture_mats_count, generators_count, lighting_fixtures_count, 
-      lighting_kits_count, flashlights_count, raincoats_count, 
-      rain_boots_count, other_supplies_count, address, 
-      longitude, latitude, contact_person, 
+    insert into yaan_disaster_reserves (id, county, storage_points_count,
+      total_kits_count, disaster_tents_count, cotton_blankets_count,
+      other_blankets_count, cotton_clothes_count,
+      cotton_coats_count, other_clothes_count, wool_blankets_count,
+      folding_beds_count, bunk_beds_count, striped_cloth_bundles_count,
+      moisture_mats_count, generators_count, lighting_fixtures_count,
+      lighting_kits_count, flashlights_count, raincoats_count,
+      rain_boots_count, other_supplies_count, address,
+      longitude, latitude, contact_person,
       contact_phone, insert_time)
-    values (#{id,jdbcType=INTEGER}, #{county,jdbcType=VARCHAR}, #{storagePointsCount,jdbcType=INTEGER}, 
-      #{totalKitsCount,jdbcType=INTEGER}, #{disasterTentsCount,jdbcType=INTEGER}, #{cottonBlanketsCount,jdbcType=INTEGER}, 
-      #{otherBlanketsCount,jdbcType=INTEGER}, #{cottonClothesCount,jdbcType=INTEGER}, 
-      #{cottonCoatsCount,jdbcType=INTEGER}, #{otherClothesCount,jdbcType=INTEGER}, #{woolBlanketsCount,jdbcType=INTEGER}, 
-      #{foldingBedsCount,jdbcType=INTEGER}, #{bunkBedsCount,jdbcType=INTEGER}, #{stripedClothBundlesCount,jdbcType=INTEGER}, 
-      #{moistureMatsCount,jdbcType=INTEGER}, #{generatorsCount,jdbcType=INTEGER}, #{lightingFixturesCount,jdbcType=INTEGER}, 
-      #{lightingKitsCount,jdbcType=INTEGER}, #{flashlightsCount,jdbcType=INTEGER}, #{raincoatsCount,jdbcType=INTEGER}, 
-      #{rainBootsCount,jdbcType=INTEGER}, #{otherSuppliesCount,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
-      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{county,jdbcType=VARCHAR}, #{storagePointsCount,jdbcType=INTEGER},
+      #{totalKitsCount,jdbcType=INTEGER}, #{disasterTentsCount,jdbcType=INTEGER}, #{cottonBlanketsCount,jdbcType=INTEGER},
+      #{otherBlanketsCount,jdbcType=INTEGER}, #{cottonClothesCount,jdbcType=INTEGER},
+      #{cottonCoatsCount,jdbcType=INTEGER}, #{otherClothesCount,jdbcType=INTEGER}, #{woolBlanketsCount,jdbcType=INTEGER},
+      #{foldingBedsCount,jdbcType=INTEGER}, #{bunkBedsCount,jdbcType=INTEGER}, #{stripedClothBundlesCount,jdbcType=INTEGER},
+      #{moistureMatsCount,jdbcType=INTEGER}, #{generatorsCount,jdbcType=INTEGER}, #{lightingFixturesCount,jdbcType=INTEGER},
+      #{lightingKitsCount,jdbcType=INTEGER}, #{flashlightsCount,jdbcType=INTEGER}, #{raincoatsCount,jdbcType=INTEGER},
+      #{rainBootsCount,jdbcType=INTEGER}, #{otherSuppliesCount,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR},
       #{contactPhone,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ruoyi.system.domain.export.YaanDisasterReserves">
+  <insert id="insertSelective" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
     <!--@mbg.generated-->
     insert into yaan_disaster_reserves
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -253,7 +253,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.system.domain.export.YaanDisasterReserves">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
     <!--@mbg.generated-->
     update yaan_disaster_reserves
     <set>
@@ -341,7 +341,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ruoyi.system.domain.export.YaanDisasterReserves">
+  <update id="updateByPrimaryKey" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
     <!--@mbg.generated-->
     update yaan_disaster_reserves
     set county = #{county,jdbcType=VARCHAR},

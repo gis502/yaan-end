@@ -1,124 +1,180 @@
 package com.ruoyi.system.domain;
 
-import java.util.Date;
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 生活类救灾物资储备情况统计表
- */
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class YaanDisasterReserves {
+
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-    * 县（区）
-    */
+     * county
+     */
+    @TableField(value="county")
     private String county;
 
     /**
-    * 储备库点数量（个）
-    */
+     * storage_points_count
+     */
+    @TableField(value="storage_points_count")
     private Integer storagePointsCount;
 
     /**
-    * 合计总件套数
-    */
+     * total_kits_count
+     */
+    @TableField(value="total_kits_count")
     private Integer totalKitsCount;
 
     /**
-    * 救灾帐篷（顶）
-    */
+     * disaster_tents_count
+     */
+    @TableField(value="disaster_tents_count")
     private Integer disasterTentsCount;
 
     /**
-    * 棉被（床）
-    */
+     * cotton_blankets_count
+     */
+    @TableField(value="cotton_blankets_count")
     private Integer cottonBlanketsCount;
 
     /**
-    * 其他被子（床）
-    */
+     * other_blankets_count
+     */
+    @TableField(value="other_blankets_count")
     private Integer otherBlanketsCount;
 
     /**
-    * 棉衣裤（套）
-    */
+     * cotton_clothes_count
+     */
+    @TableField(value="cotton_clothes_count")
     private Integer cottonClothesCount;
 
     /**
-    * 棉大衣（件）
-    */
+     * cotton_coats_count
+     */
+    @TableField(value="cotton_coats_count")
     private Integer cottonCoatsCount;
 
     /**
-    * 其他衣物（套、件）
-    */
+     * other_clothes_count
+     */
+    @TableField(value="other_clothes_count")
     private Integer otherClothesCount;
 
     /**
-    * 毛毯（床）
-    */
+     * wool_blankets_count
+     */
+    @TableField(value="wool_blankets_count")
     private Integer woolBlanketsCount;
 
     /**
-    * 折叠床（张）
-    */
+     * folding_beds_count
+     */
+    @TableField(value="folding_beds_count")
     private Integer foldingBedsCount;
 
     /**
-    * 高低床（套）
-    */
+     * bunk_beds_count
+     */
+    @TableField(value="bunk_beds_count")
     private Integer bunkBedsCount;
 
     /**
-    * 彩条布（包）
-    */
+     * striped_cloth_bundles_count
+     */
+    @TableField(value="striped_cloth_bundles_count")
     private Integer stripedClothBundlesCount;
 
     /**
-    * 防潮垫（张）
-    */
+     * moisture_mats_count
+     */
+    @TableField(value="moisture_mats_count")
     private Integer moistureMatsCount;
 
     /**
-    * 发电机（台）
-    */
+     * generators_count
+     */
+    @TableField(value="generators_count")
     private Integer generatorsCount;
 
     /**
-    * 照明灯具（个）
-    */
+     * lighting_fixtures_count
+     */
+    @TableField(value="lighting_fixtures_count")
     private Integer lightingFixturesCount;
 
     /**
-    * 照明灯组（套）
-    */
+     * lighting_kits_count
+     */
+    @TableField(value="lighting_kits_count")
     private Integer lightingKitsCount;
 
     /**
-    * 手电筒（支）
-    */
+     * flashlights_count
+     */
+    @TableField(value="flashlights_count")
     private Integer flashlightsCount;
 
+    /**
+     * raincoats_count
+     */
+    @TableField(value="raincoats_count")
     private Integer raincoatsCount;
 
+    /**
+     * rain_boots_count
+     */
+    @TableField(value="rain_boots_count")
     private Integer rainBootsCount;
 
+    /**
+     * other_supplies_count
+     */
+    @TableField(value="other_supplies_count")
     private Integer otherSuppliesCount;
 
+    /**
+     * address
+     */
+    @TableField(value="address")
     private String address;
 
+    /**
+     * longitude
+     */
+    @TableField(value="longitude")
     private String longitude;
 
+    /**
+     * latitude
+     */
+    @TableField(value="latitude")
     private String latitude;
 
+    /**
+     * contact_person
+     */
+    @TableField(value="contact_person")
     private String contactPerson;
 
+    /**
+     * contact_phone
+     */
+    @TableField(value="contact_phone")
     private String contactPhone;
 
+    /**
+     * insert_time
+     */
+    @TableField(value="insert_time")
     private Date insertTime;
 }

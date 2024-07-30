@@ -1,16 +1,12 @@
 package com.ruoyi.web.controller.system;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.ruoyi.system.domain.PlotIconManagement;
-import com.ruoyi.system.domain.SituationPlot;
-import com.ruoyi.system.domain.YaanSituationPlot;
-import com.ruoyi.system.domain.YaanSituationPlotInfo;
+import com.ruoyi.system.domain.*;
+import com.ruoyi.system.domain.vo.PlotwithStartandEndTime;
 import com.ruoyi.system.service.SituationPlotService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,7 +53,6 @@ public class SituationPlotController {
         List<YaanSituationPlot> plotData = situationPlotService.getPlot(eqid);
         return plotData;
     }
-
     @GetMapping("/getplotinfos")
     public List<YaanSituationPlotInfo> getPlotInfos(String plotid){
         List<YaanSituationPlotInfo> plotInfoData = situationPlotService.getPlotInfos(plotid);
@@ -81,5 +76,11 @@ public class SituationPlotController {
     public int updataPlotInfo(@RequestBody YaanSituationPlotInfo param){
         int data = situationPlotService.updataPlotInfo(param);
         return data;
+    }
+
+    @PostMapping("/getplotswithtime")
+    public List<PlotwithStartandEndTime> getPlotwithStartandEndtime(@RequestParam String eqid) {
+        List<PlotwithStartandEndTime> selectPlotWithTimeforEqid=situationPlotService.getPlotwithStartandEndtime(eqid);
+        return selectPlotWithTimeforEqid;
     }
 }

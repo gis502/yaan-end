@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.YaanDisasterReservesMapper">
+  <resultMap id="BaseResultMap" type="com.ruoyi.system.domain.YaanDisasterReserves">
+    <!--@mbg.generated-->
+    <!--@Table yaan_disaster_reserves-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="storage_points_count" jdbcType="INTEGER" property="storagePointsCount" />
+    <result column="total_kits_count" jdbcType="INTEGER" property="totalKitsCount" />
+    <result column="disaster_tents_count" jdbcType="INTEGER" property="disasterTentsCount" />
+    <result column="cotton_blankets_count" jdbcType="INTEGER" property="cottonBlanketsCount" />
+    <result column="other_blankets_count" jdbcType="INTEGER" property="otherBlanketsCount" />
+    <result column="cotton_clothes_count" jdbcType="INTEGER" property="cottonClothesCount" />
+    <result column="cotton_coats_count" jdbcType="INTEGER" property="cottonCoatsCount" />
+    <result column="other_clothes_count" jdbcType="INTEGER" property="otherClothesCount" />
+    <result column="wool_blankets_count" jdbcType="INTEGER" property="woolBlanketsCount" />
+    <result column="folding_beds_count" jdbcType="INTEGER" property="foldingBedsCount" />
+    <result column="bunk_beds_count" jdbcType="INTEGER" property="bunkBedsCount" />
+    <result column="striped_cloth_bundles_count" jdbcType="INTEGER" property="stripedClothBundlesCount" />
+    <result column="moisture_mats_count" jdbcType="INTEGER" property="moistureMatsCount" />
+    <result column="generators_count" jdbcType="INTEGER" property="generatorsCount" />
+    <result column="lighting_fixtures_count" jdbcType="INTEGER" property="lightingFixturesCount" />
+    <result column="lighting_kits_count" jdbcType="INTEGER" property="lightingKitsCount" />
+    <result column="flashlights_count" jdbcType="INTEGER" property="flashlightsCount" />
+    <result column="raincoats_count" jdbcType="INTEGER" property="raincoatsCount" />
+    <result column="rain_boots_count" jdbcType="INTEGER" property="rainBootsCount" />
+    <result column="other_supplies_count" jdbcType="INTEGER" property="otherSuppliesCount" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="contact_person" jdbcType="VARCHAR" property="contactPerson" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, county, storage_points_count, total_kits_count, disaster_tents_count, cotton_blankets_count,
+    other_blankets_count, cotton_clothes_count, cotton_coats_count, other_clothes_count,
+    wool_blankets_count, folding_beds_count, bunk_beds_count, striped_cloth_bundles_count,
+    moisture_mats_count, generators_count, lighting_fixtures_count, lighting_kits_count,
+    flashlights_count, raincoats_count, rain_boots_count, other_supplies_count, address,
+    longitude, latitude, contact_person, contact_phone, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from yaan_disaster_reserves
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from yaan_disaster_reserves
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
+    <!--@mbg.generated-->
+    insert into yaan_disaster_reserves (id, county, storage_points_count,
+      total_kits_count, disaster_tents_count, cotton_blankets_count,
+      other_blankets_count, cotton_clothes_count,
+      cotton_coats_count, other_clothes_count, wool_blankets_count,
+      folding_beds_count, bunk_beds_count, striped_cloth_bundles_count,
+      moisture_mats_count, generators_count, lighting_fixtures_count,
+      lighting_kits_count, flashlights_count, raincoats_count,
+      rain_boots_count, other_supplies_count, address,
+      longitude, latitude, contact_person,
+      contact_phone, insert_time)
+    values (#{id,jdbcType=INTEGER}, #{county,jdbcType=VARCHAR}, #{storagePointsCount,jdbcType=INTEGER},
+      #{totalKitsCount,jdbcType=INTEGER}, #{disasterTentsCount,jdbcType=INTEGER}, #{cottonBlanketsCount,jdbcType=INTEGER},
+      #{otherBlanketsCount,jdbcType=INTEGER}, #{cottonClothesCount,jdbcType=INTEGER},
+      #{cottonCoatsCount,jdbcType=INTEGER}, #{otherClothesCount,jdbcType=INTEGER}, #{woolBlanketsCount,jdbcType=INTEGER},
+      #{foldingBedsCount,jdbcType=INTEGER}, #{bunkBedsCount,jdbcType=INTEGER}, #{stripedClothBundlesCount,jdbcType=INTEGER},
+      #{moistureMatsCount,jdbcType=INTEGER}, #{generatorsCount,jdbcType=INTEGER}, #{lightingFixturesCount,jdbcType=INTEGER},
+      #{lightingKitsCount,jdbcType=INTEGER}, #{flashlightsCount,jdbcType=INTEGER}, #{raincoatsCount,jdbcType=INTEGER},
+      #{rainBootsCount,jdbcType=INTEGER}, #{otherSuppliesCount,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR},
+      #{contactPhone,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
+    <!--@mbg.generated-->
+    insert into yaan_disaster_reserves
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="county != null">
+        county,
+      </if>
+      <if test="storagePointsCount != null">
+        storage_points_count,
+      </if>
+      <if test="totalKitsCount != null">
+        total_kits_count,
+      </if>
+      <if test="disasterTentsCount != null">
+        disaster_tents_count,
+      </if>
+      <if test="cottonBlanketsCount != null">
+        cotton_blankets_count,
+      </if>
+      <if test="otherBlanketsCount != null">
+        other_blankets_count,
+      </if>
+      <if test="cottonClothesCount != null">
+        cotton_clothes_count,
+      </if>
+      <if test="cottonCoatsCount != null">
+        cotton_coats_count,
+      </if>
+      <if test="otherClothesCount != null">
+        other_clothes_count,
+      </if>
+      <if test="woolBlanketsCount != null">
+        wool_blankets_count,
+      </if>
+      <if test="foldingBedsCount != null">
+        folding_beds_count,
+      </if>
+      <if test="bunkBedsCount != null">
+        bunk_beds_count,
+      </if>
+      <if test="stripedClothBundlesCount != null">
+        striped_cloth_bundles_count,
+      </if>
+      <if test="moistureMatsCount != null">
+        moisture_mats_count,
+      </if>
+      <if test="generatorsCount != null">
+        generators_count,
+      </if>
+      <if test="lightingFixturesCount != null">
+        lighting_fixtures_count,
+      </if>
+      <if test="lightingKitsCount != null">
+        lighting_kits_count,
+      </if>
+      <if test="flashlightsCount != null">
+        flashlights_count,
+      </if>
+      <if test="raincoatsCount != null">
+        raincoats_count,
+      </if>
+      <if test="rainBootsCount != null">
+        rain_boots_count,
+      </if>
+      <if test="otherSuppliesCount != null">
+        other_supplies_count,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="contactPerson != null">
+        contact_person,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="storagePointsCount != null">
+        #{storagePointsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalKitsCount != null">
+        #{totalKitsCount,jdbcType=INTEGER},
+      </if>
+      <if test="disasterTentsCount != null">
+        #{disasterTentsCount,jdbcType=INTEGER},
+      </if>
+      <if test="cottonBlanketsCount != null">
+        #{cottonBlanketsCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherBlanketsCount != null">
+        #{otherBlanketsCount,jdbcType=INTEGER},
+      </if>
+      <if test="cottonClothesCount != null">
+        #{cottonClothesCount,jdbcType=INTEGER},
+      </if>
+      <if test="cottonCoatsCount != null">
+        #{cottonCoatsCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherClothesCount != null">
+        #{otherClothesCount,jdbcType=INTEGER},
+      </if>
+      <if test="woolBlanketsCount != null">
+        #{woolBlanketsCount,jdbcType=INTEGER},
+      </if>
+      <if test="foldingBedsCount != null">
+        #{foldingBedsCount,jdbcType=INTEGER},
+      </if>
+      <if test="bunkBedsCount != null">
+        #{bunkBedsCount,jdbcType=INTEGER},
+      </if>
+      <if test="stripedClothBundlesCount != null">
+        #{stripedClothBundlesCount,jdbcType=INTEGER},
+      </if>
+      <if test="moistureMatsCount != null">
+        #{moistureMatsCount,jdbcType=INTEGER},
+      </if>
+      <if test="generatorsCount != null">
+        #{generatorsCount,jdbcType=INTEGER},
+      </if>
+      <if test="lightingFixturesCount != null">
+        #{lightingFixturesCount,jdbcType=INTEGER},
+      </if>
+      <if test="lightingKitsCount != null">
+        #{lightingKitsCount,jdbcType=INTEGER},
+      </if>
+      <if test="flashlightsCount != null">
+        #{flashlightsCount,jdbcType=INTEGER},
+      </if>
+      <if test="raincoatsCount != null">
+        #{raincoatsCount,jdbcType=INTEGER},
+      </if>
+      <if test="rainBootsCount != null">
+        #{rainBootsCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherSuppliesCount != null">
+        #{otherSuppliesCount,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null">
+        #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
+    <!--@mbg.generated-->
+    update yaan_disaster_reserves
+    <set>
+      <if test="county != null">
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="storagePointsCount != null">
+        storage_points_count = #{storagePointsCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalKitsCount != null">
+        total_kits_count = #{totalKitsCount,jdbcType=INTEGER},
+      </if>
+      <if test="disasterTentsCount != null">
+        disaster_tents_count = #{disasterTentsCount,jdbcType=INTEGER},
+      </if>
+      <if test="cottonBlanketsCount != null">
+        cotton_blankets_count = #{cottonBlanketsCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherBlanketsCount != null">
+        other_blankets_count = #{otherBlanketsCount,jdbcType=INTEGER},
+      </if>
+      <if test="cottonClothesCount != null">
+        cotton_clothes_count = #{cottonClothesCount,jdbcType=INTEGER},
+      </if>
+      <if test="cottonCoatsCount != null">
+        cotton_coats_count = #{cottonCoatsCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherClothesCount != null">
+        other_clothes_count = #{otherClothesCount,jdbcType=INTEGER},
+      </if>
+      <if test="woolBlanketsCount != null">
+        wool_blankets_count = #{woolBlanketsCount,jdbcType=INTEGER},
+      </if>
+      <if test="foldingBedsCount != null">
+        folding_beds_count = #{foldingBedsCount,jdbcType=INTEGER},
+      </if>
+      <if test="bunkBedsCount != null">
+        bunk_beds_count = #{bunkBedsCount,jdbcType=INTEGER},
+      </if>
+      <if test="stripedClothBundlesCount != null">
+        striped_cloth_bundles_count = #{stripedClothBundlesCount,jdbcType=INTEGER},
+      </if>
+      <if test="moistureMatsCount != null">
+        moisture_mats_count = #{moistureMatsCount,jdbcType=INTEGER},
+      </if>
+      <if test="generatorsCount != null">
+        generators_count = #{generatorsCount,jdbcType=INTEGER},
+      </if>
+      <if test="lightingFixturesCount != null">
+        lighting_fixtures_count = #{lightingFixturesCount,jdbcType=INTEGER},
+      </if>
+      <if test="lightingKitsCount != null">
+        lighting_kits_count = #{lightingKitsCount,jdbcType=INTEGER},
+      </if>
+      <if test="flashlightsCount != null">
+        flashlights_count = #{flashlightsCount,jdbcType=INTEGER},
+      </if>
+      <if test="raincoatsCount != null">
+        raincoats_count = #{raincoatsCount,jdbcType=INTEGER},
+      </if>
+      <if test="rainBootsCount != null">
+        rain_boots_count = #{rainBootsCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherSuppliesCount != null">
+        other_supplies_count = #{otherSuppliesCount,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null">
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruoyi.system.domain.YaanDisasterReserves">
+    <!--@mbg.generated-->
+    update yaan_disaster_reserves
+    set county = #{county,jdbcType=VARCHAR},
+      storage_points_count = #{storagePointsCount,jdbcType=INTEGER},
+      total_kits_count = #{totalKitsCount,jdbcType=INTEGER},
+      disaster_tents_count = #{disasterTentsCount,jdbcType=INTEGER},
+      cotton_blankets_count = #{cottonBlanketsCount,jdbcType=INTEGER},
+      other_blankets_count = #{otherBlanketsCount,jdbcType=INTEGER},
+      cotton_clothes_count = #{cottonClothesCount,jdbcType=INTEGER},
+      cotton_coats_count = #{cottonCoatsCount,jdbcType=INTEGER},
+      other_clothes_count = #{otherClothesCount,jdbcType=INTEGER},
+      wool_blankets_count = #{woolBlanketsCount,jdbcType=INTEGER},
+      folding_beds_count = #{foldingBedsCount,jdbcType=INTEGER},
+      bunk_beds_count = #{bunkBedsCount,jdbcType=INTEGER},
+      striped_cloth_bundles_count = #{stripedClothBundlesCount,jdbcType=INTEGER},
+      moisture_mats_count = #{moistureMatsCount,jdbcType=INTEGER},
+      generators_count = #{generatorsCount,jdbcType=INTEGER},
+      lighting_fixtures_count = #{lightingFixturesCount,jdbcType=INTEGER},
+      lighting_kits_count = #{lightingKitsCount,jdbcType=INTEGER},
+      flashlights_count = #{flashlightsCount,jdbcType=INTEGER},
+      raincoats_count = #{raincoatsCount,jdbcType=INTEGER},
+      rain_boots_count = #{rainBootsCount,jdbcType=INTEGER},
+      other_supplies_count = #{otherSuppliesCount,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      contact_person = #{contactPerson,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

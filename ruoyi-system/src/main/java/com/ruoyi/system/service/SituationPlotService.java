@@ -5,7 +5,7 @@ import com.ruoyi.system.domain.PlotIconManagement;
 import com.ruoyi.system.domain.SituationPlot;
 import com.ruoyi.system.domain.YaanSituationPlot;
 import com.ruoyi.system.domain.YaanSituationPlotInfo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ruoyi.system.domain.vo.PlotwithStartandEndTime;
 
 import java.util.List;
 
@@ -29,5 +29,5 @@ public interface SituationPlotService {
     public int deletePlotAndInfo(String plotid);
     public int deletePlotInfo(String id);
     public int updataPlotInfo(YaanSituationPlotInfo param);
-
+    public List<PlotwithStartandEndTime> getPlotwithStartandEndtime(String eqid);
 }

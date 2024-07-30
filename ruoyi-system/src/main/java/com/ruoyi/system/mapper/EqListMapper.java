@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 @Mapper
@@ -28,8 +29,7 @@ public interface EqListMapper extends BaseMapper<EqList> {
     List<EqList> selectAllEq();
 
     //导入表实用
-    @Select("SELECT eqid FROM eqlist WHERE time LIKE CONCAT('%', #{time}, '%') AND position LIKE CONCAT('%', #{position}, '%')")
-    String findEarthquakeIdByTimeAndPosition(@Param("time") String time, @Param("position") String position);
-
+    @Select("SELECT eqid,time FROM eqlist WHERE position LIKE CONCAT('%', #{position}, '%')")
+    List<EqList> findEarthquakeIdByTimeAndPosition(@Param("position") String position);
 
 }

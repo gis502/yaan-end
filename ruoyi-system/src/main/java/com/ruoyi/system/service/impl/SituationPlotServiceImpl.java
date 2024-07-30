@@ -5,6 +5,7 @@ import com.ruoyi.system.domain.PlotIconManagement;
 import com.ruoyi.system.domain.SituationPlot;
 import com.ruoyi.system.domain.YaanSituationPlot;
 import com.ruoyi.system.domain.YaanSituationPlotInfo;
+import com.ruoyi.system.domain.vo.PlotwithStartandEndTime;
 import com.ruoyi.system.mapper.SituationPlotMapper;
 import com.ruoyi.system.service.SituationPlotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,4 +86,10 @@ public class SituationPlotServiceImpl implements SituationPlotService {
     public int updataPlotInfo(YaanSituationPlotInfo param){
         return situationPlotMapper.updataPlotInfo(param);
     }
+
+    @Override
+    public List<PlotwithStartandEndTime> getPlotwithStartandEndtime(String eqid){
+        return situationPlotMapper.getPlotwithStartandEndtime(eqid);
+    }
+
 }

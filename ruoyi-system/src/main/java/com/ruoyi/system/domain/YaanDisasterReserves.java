@@ -1,4 +1,4 @@
-package com.ruoyi.system.domain.export;
+package com.ruoyi.system.domain;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;

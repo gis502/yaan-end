@@ -2,18 +2,16 @@ package com.ruoyi.web.controller.system;
 
 import com.alibaba.excel.EasyExcel;
 import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.exception.ServiceException;
+import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.domain.export.YaanCasualties;
-import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.service.IYaanCasualtiesService;
 import com.ruoyi.system.service.impl.YaanAftershockStatisticsServiceImpl;
-//import lombok.RequiredArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,10 +19,14 @@ import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 导入导出控制层
+ * @author 方
+ */
 @RestController
-@RequestMapping("/statistics")
+@RequestMapping("/excel")
 @RequiredArgsConstructor
-public class StatisticsController {
+public class ExcelController {
     private final IYaanCasualtiesService iCasualtiesService;
     private final YaanAftershockStatisticsServiceImpl yaanAftershockStatisticsServiceImpl;
 
@@ -37,7 +39,7 @@ public class StatisticsController {
             case "2":
                 return AjaxResult.success(iCasualtiesService.getPage(requestBTO));
             default:
-                throw new ServiceException("系统执行异常请练习管理员");
+                throw new ServiceException("系统执行异常请联系管理员");
 
         }
 
@@ -71,6 +73,25 @@ public class StatisticsController {
                 .includeColumnFiledNames(Arrays.asList(RequestBTO.getFields()))
                 .sheet("地震数据信息统计表")
                 .doWrite(dataList);
+    }
+    @PostMapping("/importExcel/{userName}&{filename}")
+    public R getAfterShockStatistics(@RequestParam("file") MultipartFile file, @PathVariable(value = "userName") String userName, @PathVariable(value = "filename") String filename) throws IOException {
+
+        try  {
+            if (filename.equals("震情灾情统计表")) {
+                List<YaanAftershockStatistics> yaanAftershockStatistics = yaanAftershockStatisticsServiceImpl.importExcel(file, userName);
+                return R.ok(yaanAftershockStatistics);
+            }
+            if (filename.equals("人员伤亡统计表")){
+                List<YaanCasualties> yaanCasualties = iCasualtiesService.importExcel(file, userName);
+                return R.ok(yaanCasualties);
+            }else{
+                return R.fail("上传文件名称错误");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.fail("文件上传失败: " + e.getMessage());
+        }
     }
 
 }

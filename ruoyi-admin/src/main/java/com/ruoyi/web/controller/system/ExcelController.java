@@ -7,8 +7,10 @@ import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.domain.export.YaanCasualties;
+import com.ruoyi.system.domain.export.YaanRelocationResettlementDisasterReliefGroup;
 import com.ruoyi.system.service.IYaanCasualtiesService;
 import com.ruoyi.system.service.impl.YaanAftershockStatisticsServiceImpl;
+import com.ruoyi.system.service.impl.YaanRelocationResettlementDisasterReliefGroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +31,7 @@ import java.util.List;
 public class ExcelController {
     private final IYaanCasualtiesService iCasualtiesService;
     private final YaanAftershockStatisticsServiceImpl yaanAftershockStatisticsServiceImpl;
+    private final YaanRelocationResettlementDisasterReliefGroupService yaanRelocationResettlementDisasterReliefGroupService;
 
     @PostMapping("/getData")
     public AjaxResult getYaanCasualties(@RequestBody RequestBTO requestBTO) {
@@ -38,6 +41,8 @@ public class ExcelController {
                 return AjaxResult.success(yaanAftershockStatisticsServiceImpl.getPage(requestBTO));
             case "2":
                 return AjaxResult.success(iCasualtiesService.getPage(requestBTO));
+            case "3":
+                return AjaxResult.success(yaanRelocationResettlementDisasterReliefGroupService.getPage(requestBTO));
             default:
                 throw new ServiceException("系统执行异常请联系管理员");
 
@@ -58,6 +63,10 @@ public class ExcelController {
             case "2":
                 clazz = YaanCasualties.class;
                 dataList = iCasualtiesService.exportExcelGetData(RequestBTO);
+                break;
+            case "3":
+                clazz = YaanRelocationResettlementDisasterReliefGroup.class;
+                dataList = yaanRelocationResettlementDisasterReliefGroupService.exportExcelGetData(RequestBTO);
                 break;
             default:
                 throw new ServiceException("系统执行异常请练习管理员");

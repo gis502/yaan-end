@@ -1,8 +1,7 @@
-package com.ruoyi.system.service.impl;
+package com.ruoyi.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruoyi.system.domain.bto.RequestBTO;
-import com.ruoyi.system.domain.export.YaanCasualties;
 import com.ruoyi.system.domain.export.YaanRelocationResettlementDisasterReliefGroup;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ruoyi.system.service;
+package com.ruoyi.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -6,15 +6,12 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.system.domain.bto.RequestBTO;
-import com.ruoyi.system.domain.export.YaanCasualties;
 import com.ruoyi.system.domain.export.YaanRelocationResettlementDisasterReliefGroup;
+import com.ruoyi.system.service.YaanRelocationResettlementDisasterReliefGroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.ruoyi.system.mapper.YaanRelocationResettlementDisasterReliefGroupMapper;
-import com.ruoyi.system.service.impl.YaanRelocationResettlementDisasterReliefGroupService;
 
 import java.util.Arrays;
 import java.util.Comparator;

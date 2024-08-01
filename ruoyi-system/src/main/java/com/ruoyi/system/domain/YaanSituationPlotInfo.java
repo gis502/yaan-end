@@ -1,10 +1,12 @@
 package com.ruoyi.system.domain;
 
+import java.sql.Timestamp;
+
 public class YaanSituationPlotInfo {
 
     private String plotid;
-    private String starttime;
-    private String endtime;
+    private Timestamp starttime;
+    private Timestamp endtime;
     private String info;
     private String id;
 
@@ -16,19 +18,19 @@ public class YaanSituationPlotInfo {
         this.plotid = plotid;
     }
 
-    public String getStarttime() {
+    public Timestamp getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(String starttime) {
+    public void setStarttime(Timestamp starttime) {
         this.starttime = starttime;
     }
 
-    public String getEndtime() {
+    public Timestamp getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(String endtime) {
+    public void setEndtime(Timestamp endtime) {
         this.endtime = endtime;
     }
 

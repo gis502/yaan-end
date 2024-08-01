@@ -1,10 +1,12 @@
 package com.ruoyi.system.domain;
 
+import java.sql.Timestamp;
+
 public class YaanSituationPlot {
 
     private String eqid;
     private String plotid;
-    private String time;
+    private Timestamp time;
     private String plottype;
     private String drawtype;
     private String latitude;
@@ -28,11 +30,11 @@ public class YaanSituationPlot {
         this.plotid = plotid;
     }
 
-    public String getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 

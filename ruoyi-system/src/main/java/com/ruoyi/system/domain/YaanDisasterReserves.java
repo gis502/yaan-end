@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import net.sf.jsqlparser.expression.operators.relational.GeometryDistance;
+import org.apache.poi.xdgf.usermodel.section.GeometrySection;
 
 import java.util.Date;
 
@@ -174,4 +176,10 @@ public class YaanDisasterReserves {
      */
     @TableField(value="insert_time")
     private Date insertTime;
+
+    /**
+     * geom
+     */
+    @TableField(value = "geom")
+    private GeometrySection geom;
 }

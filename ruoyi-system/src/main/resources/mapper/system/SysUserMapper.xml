@@ -156,7 +156,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="password != null and password != ''">password,</if>
  			<if test="status != null and status != ''">status,</if>
  			<if test="createBy != null and createBy != ''">create_by,</if>
- 		    <if test="fileIds != null and fileIds != ''">file_ids</if>
+ 		    <if test="fileIds != null and fileIds != ''">file_ids,</if>
  			<if test="remark != null and remark != ''">remark,</if>
  			create_time
  		)values(
@@ -171,7 +171,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="password != null and password != ''">#{password},</if>
  			<if test="status != null and status != ''">#{status},</if>
  			<if test="createBy != null and createBy != ''">#{createBy},</if>
-		<if test="fileIds != null and file_ids != ''">#{fileIds}</if>
+		<if test="fileIds != null and fileIds != ''">#{fileIds},</if>
  			<if test="remark != null and remark != ''">#{remark},</if>
  			current_timestamp
  		)

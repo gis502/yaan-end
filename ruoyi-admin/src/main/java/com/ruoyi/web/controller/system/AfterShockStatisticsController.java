@@ -35,7 +35,7 @@ public class AfterShockStatisticsController {
             }
             if (filename.equals("人员伤亡统计表")){
                 System.out.println("22222");
-                List<YaanCasualties> yaanCasualties = casualtiesService.importExcel(file, userName);
+                List<YaanCasualties> yaanCasualties = casualtiesService.importExcel1(file, userName);
                 return R.ok(yaanCasualties);
             }else{
                 return R.fail("上传文件名称错误");

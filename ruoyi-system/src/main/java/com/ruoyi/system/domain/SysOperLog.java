@@ -5,12 +5,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.annotation.Excel.ColumnType;
 import com.ruoyi.common.core.domain.BaseEntity;
+import lombok.Data;
 
 /**
  * 操作日志记录表 oper_log
- * 
+ *
  * @author ruoyi
+ *
  */
+@Data
 public class SysOperLog extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -86,6 +89,8 @@ public class SysOperLog extends BaseEntity
     /** 消耗时间 */
     @Excel(name = "消耗时间", suffix = "毫秒")
     private Long costTime;
+
+    private String phonenumber;
 
     public Long getOperId()
     {

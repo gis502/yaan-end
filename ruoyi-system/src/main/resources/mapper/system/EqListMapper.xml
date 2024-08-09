@@ -6,7 +6,7 @@
 <mapper namespace="com.ruoyi.system.mapper.EqListMapper">
 
     <select id="selectAllEq" resultType="com.ruoyi.system.domain.EqList">
-        select * from eqlist
+        select * from eqlist order by time desc
     </select>
 
 

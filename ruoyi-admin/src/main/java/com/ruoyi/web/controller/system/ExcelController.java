@@ -1,12 +1,16 @@
 package com.ruoyi.web.controller.system;
 
 import com.alibaba.excel.EasyExcel;
+import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.domain.R;
+import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.exception.ServiceException;
+import com.ruoyi.system.domain.SysOperLog;
 import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.domain.export.YaanCasualties;
+import com.ruoyi.system.mapper.SysOperLogMapper;
 import com.ruoyi.system.domain.export.YaanRelocationResettlementDisasterReliefGroup;
 import com.ruoyi.system.service.IYaanCasualtiesService;
 import com.ruoyi.system.service.impl.YaanAftershockStatisticsServiceImpl;
@@ -15,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -33,6 +38,9 @@ public class ExcelController {
     private final IYaanCasualtiesService iCasualtiesService;
     private final YaanAftershockStatisticsServiceImpl yaanAftershockStatisticsServiceImpl;
     private final YaanRelocationResettlementDisasterReliefGroupService yaanRelocationResettlementDisasterReliefGroupService;
+
+    @Resource
+    private SysOperLogMapper sysOperLogMapper;
 
     @PostMapping("/getData")
     public AjaxResult getYaanCasualties(@RequestBody RequestBTO requestBTO) {
@@ -85,6 +93,7 @@ public class ExcelController {
                 .doWrite(dataList);
     }
     @PostMapping("/importExcel/{userName}&{filename}")
+    @Log(title = "导入数据", businessType = BusinessType.IMPORT)
     public R getAfterShockStatistics(@RequestParam("file") MultipartFile file, @PathVariable(value = "userName") String userName, @PathVariable(value = "filename") String filename) throws IOException {
 
         try  {
@@ -93,7 +102,7 @@ public class ExcelController {
                 return R.ok(yaanAftershockStatistics);
             }
             if (filename.equals("人员伤亡统计表")){
-                List<YaanCasualties> yaanCasualties = iCasualtiesService.importExcel(file, userName);
+                List<YaanCasualties> yaanCasualties = iCasualtiesService.importExcel1(file, userName);
                 return R.ok(yaanCasualties);
             }else{
                 return R.fail("上传文件名称错误");
@@ -102,6 +111,31 @@ public class ExcelController {
             e.printStackTrace();
             return R.fail("文件上传失败: " + e.getMessage());
         }
+    }
+
+    @PostMapping("/getExcelUploadByTime")
+    public R getExcelUploadByTime(@RequestParam("time") String time){
+        List<SysOperLog> message = null;
+
+        switch (time) {
+            case "今日":
+                message = sysOperLogMapper.getMessageByDay();
+                break;
+            case "近七天":
+                message = sysOperLogMapper.getMessageByWeek();
+                System.out.println(message);
+                break;
+            case "近一个月":
+                message = sysOperLogMapper.getMessageByMonth();
+                break;
+            case "近三个月":
+                message = sysOperLogMapper.getMessageByThreeMonth();
+                break;
+            case "近一年":
+                message = sysOperLogMapper.getMessageByYear();
+                break;
+        }
+        return R.ok(message);
     }
 
 }

@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -93,7 +92,7 @@ public class YaanCasualtiesServiceImpl extends ServiceImpl<YaanCasualtiesMapper,
 
     @SneakyThrows
     @Override
-    public List<YaanCasualties> importExcel(MultipartFile file, String userName) {
+    public List<YaanCasualties> importExcel1(MultipartFile file, String userName) {
         InputStream inputStream = file.getInputStream();
         // 读取总行数（略过表头）
         int totalRows = WorkbookFactory.create(inputStream).getSheetAt(0).getPhysicalNumberOfRows() - 4;

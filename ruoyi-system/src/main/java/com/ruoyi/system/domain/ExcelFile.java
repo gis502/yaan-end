@@ -9,13 +9,13 @@ import lombok.Data;
  * 导入导出文件表实体类
  */
 @Data
-@TableName("yaan_files")
-public class YaanFiles {
+@TableName("excel_file")
+public class ExcelFile {
     /**
      * 主键
      */
-    @TableId("file_id")
-    private Integer fileId;
+    @TableId("id")
+    private Integer id;
 
     /**
      * 文件名称

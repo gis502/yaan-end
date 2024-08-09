@@ -6,10 +6,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.common.utils.SecurityUtils;
-import com.ruoyi.system.domain.YaanFiles;
-import com.ruoyi.system.mapper.YaanFilesMapper;
+import com.ruoyi.system.domain.ExcelFile;
+import com.ruoyi.system.mapper.ExcelFileMapper;
+import com.ruoyi.system.service.IExcelFileService;
 import com.ruoyi.system.service.ISysUserService;
-import com.ruoyi.system.service.IYaanFilesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +18,15 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class YaanFilesServiceImpl extends ServiceImpl<YaanFilesMapper, YaanFiles> implements IYaanFilesService {
+public class YaanFilesServiceImpl extends ServiceImpl<ExcelFileMapper, ExcelFile> implements IExcelFileService {
     private final  ISysUserService userService;
     @Override
-    public List<YaanFiles> selectFilesAll() {
+    public List<ExcelFile> selectFilesAll() {
         return baseMapper.selectList(null);
     }
 
     @Override
-    public List<YaanFiles> selectFilesByUserId() {
+    public List<ExcelFile> selectFilesByUserId() {
         Long userId = SecurityUtils.getUserId();
         //如果用户id为空或者不存在
         if (userId == null) {
@@ -38,6 +38,6 @@ public class YaanFilesServiceImpl extends ServiceImpl<YaanFilesMapper, YaanFiles
         if (userFileIds == null || userFileIds.size() == 0) {
             return Collections.emptyList();
         }
-        return baseMapper.selectList(Wrappers.<YaanFiles>lambdaQuery().in(YaanFiles::getFileId, userFileIds));
+        return baseMapper.selectList(Wrappers.<ExcelFile>lambdaQuery().in(ExcelFile::getId, userFileIds));
     }
 }

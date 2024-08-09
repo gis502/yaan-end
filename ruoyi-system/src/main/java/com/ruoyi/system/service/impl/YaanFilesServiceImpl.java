@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.common.utils.SecurityUtils;
-import com.ruoyi.system.domain.YaanFiles;
+import com.ruoyi.system.domain.export.YaanFiles;
 import com.ruoyi.system.mapper.YaanFilesMapper;
 import com.ruoyi.system.service.ISysUserService;
 import com.ruoyi.system.service.IYaanFilesService;

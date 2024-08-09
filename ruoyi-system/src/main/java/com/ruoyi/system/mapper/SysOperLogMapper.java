@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.SysOperLog;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -48,75 +49,20 @@ public interface SysOperLogMapper
     public void cleanOperLog();
 
 
-    @Select("SELECT " +
-            "    sol.*, su.phonenumber " +
-            "FROM " +
-            "    sys_oper_log sol " +
-            "JOIN " +
-            "    sys_user su ON sol.oper_name = su.user_name " +
-            "WHERE " +
-            "    DATE_TRUNC('day', sol.oper_time) = CURRENT_DATE " +
-            "AND " +
-            "    sol.title LIKE '%导入数据%' " +
-            "ORDER BY " +
-            "    sol.oper_time DESC")
-    List<SysOperLog> getMessageByDay();
+
+    List<SysOperLog> getMessageByDay(@Param("requestParams")String requestParams);
 
 
-    @Select("SELECT " +
-            "    sol.*, su.phonenumber " +
-            "FROM " +
-            "    sys_oper_log sol " +
-            "JOIN " +
-            "    sys_user su ON sol.oper_name = su.user_name " +
-            "WHERE " +
-            "    sol.oper_time >= CURRENT_DATE - INTERVAL '7 days' " +
-            "AND " +
-            "    sol.title LIKE '%导入数据%' " +
-            "ORDER BY " +
-            "    sol.oper_time DESC")
-    List<SysOperLog> getMessageByWeek();
 
-    @Select("SELECT " +
-            "    sol.*, su.phonenumber " +
-            "FROM " +
-            "    sys_oper_log sol " +
-            "JOIN " +
-            "    sys_user su ON sol.oper_name = su.user_name " +
-            "WHERE " +
-            "    sol.oper_time >= NOW() - INTERVAL '1 month' " +
-            "AND " +
-            "    sol.title LIKE '%导入数据%' " +
-            "ORDER BY " +
-            "    sol.oper_time DESC")
-    List<SysOperLog> getMessageByMonth();
+    List<SysOperLog> getMessageByWeek(@Param("requestParams")String requestParams);
 
-    @Select("SELECT " +
-            "    sol.*, su.phonenumber " +
-            "FROM " +
-            "    sys_oper_log sol " +
-            "JOIN " +
-            "    sys_user su ON sol.oper_name = su.user_name " +
-            "WHERE " +
-            "    sol.oper_time >= NOW() - INTERVAL '3 months' " +
-            "AND " +
-            "    sol.title LIKE '%导入数据%' " +
-            "ORDER BY " +
-            "    sol.oper_time DESC")
-    List<SysOperLog> getMessageByThreeMonth();
 
-    @Select("SELECT " +
-            "    sol.*, su.phonenumber " +
-            "FROM " +
-            "    sys_oper_log sol " +
-            "JOIN " +
-            "    sys_user su ON sol.oper_name = su.user_name " +
-            "WHERE " +
-            "    sol.oper_time >= NOW() - INTERVAL '1 year' " +
-            "AND " +
-            "    sol.title LIKE '%导入数据%' " +
-            "ORDER BY " +
-            "    sol.oper_time DESC")
-    List<SysOperLog> getMessageByYear();
+    List<SysOperLog> getMessageByMonth(@Param("requestParams")String requestParams);
+
+
+    List<SysOperLog> getMessageByThreeMonth(@Param("requestParams")String requestParams);
+
+
+    List<SysOperLog> getMessageByYear(@Param("requestParams")String requestParams);
 
 }

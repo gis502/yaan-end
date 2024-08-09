@@ -1,4 +1,4 @@
-package com.ruoyi.system.domain;
+package com.ruoyi.system.domain.export;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -27,4 +27,10 @@ public class YaanFiles {
      */
     @TableField("file_column")
     private String fileColumn;
+
+    /**
+     * 导表匹配标识
+     */
+    @TableField("file_flag")
+    private String fileFlag;
 }

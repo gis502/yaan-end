@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.domain.export.YaanRelocationResettlementDisasterReliefGroup;
 import com.ruoyi.system.service.YaanRelocationResettlementDisasterReliefGroupService;
+import com.ruoyi.system.service.strategy.DataExportStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author 方
+ */
 @Service
 @RequiredArgsConstructor
 public class YaanRelocationResettlementDisasterReliefGroupServiceImpl
         extends ServiceImpl<YaanRelocationResettlementDisasterReliefGroupMapper, YaanRelocationResettlementDisasterReliefGroup>
-        implements YaanRelocationResettlementDisasterReliefGroupService {
+        implements YaanRelocationResettlementDisasterReliefGroupService , DataExportStrategy {
 
 
     private YaanRelocationResettlementDisasterReliefGroupMapper yaanRelocationResettlementDisasterReliefGroupMapper;

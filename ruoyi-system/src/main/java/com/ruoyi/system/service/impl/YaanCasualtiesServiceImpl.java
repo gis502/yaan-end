@@ -12,6 +12,7 @@ import com.ruoyi.system.domain.bto.RequestBTO;
 import com.ruoyi.system.mapper.YaanCasualtiesMapper;
 import com.ruoyi.system.mapper.EqListMapper;
 import com.ruoyi.system.service.IYaanCasualtiesService;
+import com.ruoyi.system.service.strategy.DataExportStrategy;
 import lombok.SneakyThrows;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class YaanCasualtiesServiceImpl extends ServiceImpl<YaanCasualtiesMapper, YaanCasualties> implements IYaanCasualtiesService {
+public class YaanCasualtiesServiceImpl extends ServiceImpl<YaanCasualtiesMapper, YaanCasualties> implements IYaanCasualtiesService , DataExportStrategy {
 
     @Resource
     private EqListMapper eqListMapper;

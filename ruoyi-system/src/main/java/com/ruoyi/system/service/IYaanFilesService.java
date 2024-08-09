@@ -1,7 +1,7 @@
 package com.ruoyi.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ruoyi.system.domain.YaanFiles;
+import com.ruoyi.system.domain.export.YaanFiles;
 
 import java.util.List;
 

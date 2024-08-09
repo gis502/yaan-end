@@ -13,6 +13,7 @@ import com.ruoyi.system.domain.export.YaanAftershockStatistics;
 import com.ruoyi.system.mapper.EqListMapper;
 import com.ruoyi.system.mapper.YaanAftershockStatisticsMapper;
 import com.ruoyi.system.service.IYaanAftershockStatisticsService;
+import com.ruoyi.system.service.strategy.DataExportStrategy;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +27,8 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class YaanAftershockStatisticsServiceImpl extends ServiceImpl<YaanAftershockStatisticsMapper, YaanAftershockStatistics> implements IYaanAftershockStatisticsService {
+public class YaanAftershockStatisticsServiceImpl extends ServiceImpl<YaanAftershockStatisticsMapper, YaanAftershockStatistics>
+        implements IYaanAftershockStatisticsService, DataExportStrategy {
 
     @Resource
     private EqListMapper eqListMapper;

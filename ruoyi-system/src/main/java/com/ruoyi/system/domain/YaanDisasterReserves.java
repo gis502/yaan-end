@@ -1,7 +1,6 @@
 package com.ruoyi.system.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
@@ -14,164 +13,141 @@ public class YaanDisasterReserves {
     private Integer id;
 
     /**
-     * county
+     * 县（区）
      */
-    @TableField(value="county")
     private String county;
 
     /**
-     * storage_points_count
+     * 储备库点数量（个）
      */
-    @TableField(value="storage_points_count")
     private Integer storagePointsCount;
 
     /**
-     * total_kits_count
+     * 合计总件套数
      */
-    @TableField(value="total_kits_count")
     private Integer totalKitsCount;
 
     /**
-     * disaster_tents_count
+     * 救灾帐篷（顶）
      */
-    @TableField(value="disaster_tents_count")
     private Integer disasterTentsCount;
 
     /**
-     * cotton_blankets_count
+     * 棉被（床）
      */
-    @TableField(value="cotton_blankets_count")
     private Integer cottonBlanketsCount;
 
     /**
-     * other_blankets_count
+     * 其他被子（床）
      */
-    @TableField(value="other_blankets_count")
     private Integer otherBlanketsCount;
 
     /**
-     * cotton_clothes_count
+     * 棉衣裤（套）
      */
-    @TableField(value="cotton_clothes_count")
     private Integer cottonClothesCount;
 
     /**
-     * cotton_coats_count
+     * 棉大衣（件）
      */
-    @TableField(value="cotton_coats_count")
     private Integer cottonCoatsCount;
 
     /**
-     * other_clothes_count
+     * 其他衣物（套、件）
      */
-    @TableField(value="other_clothes_count")
     private Integer otherClothesCount;
 
     /**
-     * wool_blankets_count
+     * 毛毯（床）
      */
-    @TableField(value="wool_blankets_count")
     private Integer woolBlanketsCount;
 
     /**
-     * folding_beds_count
+     * 折叠床（张）
      */
-    @TableField(value="folding_beds_count")
     private Integer foldingBedsCount;
 
     /**
-     * bunk_beds_count
+     * 高低床（套）
      */
-    @TableField(value="bunk_beds_count")
     private Integer bunkBedsCount;
 
     /**
-     * striped_cloth_bundles_count
+     * 彩条布（包）
      */
-    @TableField(value="striped_cloth_bundles_count")
     private Integer stripedClothBundlesCount;
 
     /**
-     * moisture_mats_count
+     * 防潮垫（张）
      */
-    @TableField(value="moisture_mats_count")
     private Integer moistureMatsCount;
 
     /**
-     * generators_count
+     * 发电机（台）
      */
-    @TableField(value="generators_count")
     private Integer generatorsCount;
 
     /**
-     * lighting_fixtures_count
+     * 照明灯具（个）
      */
-    @TableField(value="lighting_fixtures_count")
     private Integer lightingFixturesCount;
 
     /**
-     * lighting_kits_count
+     * 照明灯组（套）
      */
-    @TableField(value="lighting_kits_count")
     private Integer lightingKitsCount;
 
     /**
-     * flashlights_count
+     * 手电筒（支）
      */
-    @TableField(value="flashlights_count")
     private Integer flashlightsCount;
-
     /**
-     * raincoats_count
+     * 雨衣（件）
      */
-    @TableField(value="raincoats_count")
     private Integer raincoatsCount;
 
     /**
-     * rain_boots_count
+     * 雨靴（双）
      */
-    @TableField(value="rain_boots_count")
     private Integer rainBootsCount;
 
     /**
-     * other_supplies_count
+     * 其他装备数量（个）
      */
-    @TableField(value="other_supplies_count")
     private Integer otherSuppliesCount;
 
     /**
-     * address
+     * 地址
      */
-    @TableField(value="address")
     private String address;
 
     /**
-     * longitude
+     * 经度
      */
-    @TableField(value="longitude")
     private String longitude;
 
     /**
-     * latitude
+     * 纬度
      */
-    @TableField(value="latitude")
     private String latitude;
 
     /**
-     * contact_person
+     * 联系人
      */
-    @TableField(value="contact_person")
     private String contactPerson;
 
     /**
-     * contact_phone
+     * 联系电话
      */
-    @TableField(value="contact_phone")
     private String contactPhone;
 
     /**
-     * insert_time
+     * 插入时间
      */
-    @TableField(value="insert_time")
     private Date insertTime;
+
+    /**
+     * 点
+     */
+//    private Geometry point;
 }

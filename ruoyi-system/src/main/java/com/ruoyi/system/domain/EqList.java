@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @TableName(value = "eqlist")
 public class EqList implements Serializable {
@@ -15,7 +16,7 @@ public class EqList implements Serializable {
     @TableId(value = "eqid")
     private String eqid;
     private String position;
-    private Timestamp time;
+    private LocalDateTime time;
     private String magnitude;
     private String longitude;
     private String latitude;
@@ -37,11 +38,11 @@ public class EqList implements Serializable {
         this.position = position;
     }
 
-    public Timestamp getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

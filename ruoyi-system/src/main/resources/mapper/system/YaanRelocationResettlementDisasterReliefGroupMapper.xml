@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.YaanRelocationResettlementDisasterReliefGroupMapper">
+  <resultMap id="BaseResultMap" type="com.ruoyi.system.domain.export.YaanRelocationResettlementDisasterReliefGroup">
+    <!--@mbg.generated-->
+    <!--@Table yaan_relocation_resettlement_disaster_relief_group-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="earthquake_id" jdbcType="VARCHAR" property="earthquakeId" />
+    <result column="seismic_zone_id" jdbcType="VARCHAR" property="seismicZoneId" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="activated_emergency_shelters" jdbcType="INTEGER" property="activatedEmergencyShelters" />
+    <result column="constructed_temporary_shelters" jdbcType="INTEGER" property="constructedTemporaryShelters" />
+    <result column="new_relocations" jdbcType="INTEGER" property="newRelocations" />
+    <result column="total_relocations" jdbcType="INTEGER" property="totalRelocations" />
+    <result column="centralized_resettlements" jdbcType="INTEGER" property="centralizedResettlements" />
+    <result column="distributed_resettlements" jdbcType="INTEGER" property="distributedResettlements" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, earthquake_id, seismic_zone_id, insert_time, activated_emergency_shelters, constructed_temporary_shelters, 
+    new_relocations, total_relocations, centralized_resettlements, distributed_resettlements
+  </sql>
+</mapper>

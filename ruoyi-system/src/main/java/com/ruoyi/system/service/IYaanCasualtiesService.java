@@ -13,5 +13,5 @@ public interface IYaanCasualtiesService extends IService<YaanCasualties> {
 
     List<YaanCasualties> exportExcelGetData(RequestBTO requestBTO);
 
-    List<YaanCasualties> importExcel1(MultipartFile file, String userName);
+    List<YaanCasualties>  importExcel1(MultipartFile file, String userName);
 }
